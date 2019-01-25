@@ -1,28 +1,20 @@
 <app-carousel [slides]="carouselSlides"></app-carousel>
 <app-form-get-started></app-form-get-started>
 
-<section class="section section_background_blue section_type_featured">
-  <div class="container container_type_narrow container_flex_reverse">
-    <div class="featured-description">
+<div class="shopping">
+  <div class="container">
+    <div class="shopping-description">
       <h3 class="h3">Shopping List</h3>
       <p>Easily create and manage your grocery lists with friends and family.</p>
 
-      <ul class="features-list">
-        <li class="features-list__item">
-          <span class="features-list__icon icon icon-share"></span>
-          <span class="features-list__text">Share Your List</span>
-        </li>
-        <li class="features-list__item">
-          <span class="features-list__icon icon icon-clock"></span>
-          <span class="features-list__text">Add From History</span>
-        </li>
-        <li class="features-list__item">
-          <span class="features-list__icon icon icon-barcode"></span>
-          <span class="features-list__text">Barcode Scanner</span>
-        </li>
-      </ul>
+      <mat-list>
+        <mat-list-item *ngFor="let shopping of shoppingList">
+          <mat-icon>{{shopping.icon}}</mat-icon>
+          {{shopping.title}}
+        </mat-list-item>
+      </mat-list>
     </div>
 
-    <img src="https://ddnh378lrqdgf.cloudfront.net/static/images/new/featured/shopping_list.png" class="featured-image featured-image_shopping-list pull_direction_left" alt="Shopping List">
+    <img src="https://ddnh378lrqdgf.cloudfront.net/static/images/new/featured/shopping_list.png" class="shopping-image" alt="Shopping">
   </div>
-</section>
+</div>

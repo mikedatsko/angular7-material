@@ -1,11 +1,11 @@
 <div class="container">
-  <h3>Workflow made simple. <span>Try it for free.</span></h3>
-  <form subscribeForm="ngForm" (ngSubmit)="subscribeToNewsLetter(subscribeForm)">
+  <h3>A new way to manage your <span [style.color]="'#595AD4'">roadmap</span></h3>
+  <p>Plan. Organize. Track. In one visual, collaborative space.</p>
+  <form #getStartedForm="ngForm" (ngSubmit)="getStarted(getStartedForm)">
     <mat-form-field>
-      <input matInput placeholder="Input">
+      <input matInput placeholder="Enter your work email" name="email" ngModel>
     </mat-form-field>
 
-    <button mat-button style="background-color: #595ad4;
-    color: #fff;border-radius: 24px;">Get started</button>
+    <button mat-button class="submit-get-started">Get started</button>
   </form>
 </div>

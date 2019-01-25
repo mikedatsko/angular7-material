@@ -1,7 +1,20 @@
 <owl-carousel-o *ngIf="carouselOptions && slides.length" [options]="carouselOptions">
   <ng-container *ngFor="let slide of slides">
     <ng-template carouselSlide [id]="slide.id">
-      <img [src]="slide.imagePath" [alt]="slide.alt" [title]="slide.title">
+      <div class="owl-slide-background" [ngStyle]="{'background-image': 'url(' + slide.bgImagePath + ')'}">
+        <div class="row">
+          <div class="col">
+            <img [src]="slide.imagePath" [alt]="slide.alt" [title]="slide.title">
+          </div>
+          <div class="col owl-description">
+            <h3 *ngIf="slide.title" [innerText]="slide.title"></h3>
+            <p *ngIf="slide.description" [innerText]="slide.description"></p>
+            <button *ngIf="slide.action" (click)="slide.action()" mat-button>
+              {{slide.buttonTitle || 'Submit'}}
+            </button>
+          </div>
+        </div>
+      </div>
     </ng-template>
   </ng-container>
 </owl-carousel-o>

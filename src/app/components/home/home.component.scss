@@ -51,4 +51,14 @@
       }
     }
   }
+
+  @media (max-width: 959px) {
+    .shopping {
+      .container {
+        .shopping-description {
+          min-width: 100%;
+        }
+      }
+    }
+  }
 }

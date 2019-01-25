@@ -13,6 +13,7 @@
     background: #fff;
     display: flex;
     justify-content: center;
+    height: 65px;
 
     .mat-grid-list {
       width: 100%;
@@ -130,5 +131,67 @@
 
   .navbar-padding {
     height: 65px;
+  }
+
+  .mobile-menu-toggle-button {
+    display: none;
+  }
+
+  @media (max-width: 959px) {
+    .top-menu {
+      display: none;
+
+      &.mobile-menu {
+        display: block;
+        position: absolute;
+        width: 100vw !important;
+        height: auto !important;
+        left: 0 !important;
+        top: 64px !important;
+        background: #ff0476;
+
+        /deep/ .mat-figure {
+          position: relative;
+          flex-direction: column;
+
+          .mat-button {
+            color: #fff;
+            padding: 10px 0 !important;
+            width: 100%;
+
+            .mat-button-wrapper {
+              font-size: 20px;
+            }
+
+            &.login {
+              margin: 0 10px 10px;
+              width: calc(100% - 20px);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .mobile-menu-toggle-button {
+    display: flex;
+    width: 65px;
+    height: 65px;
+    align-items: center;
+    justify-content: center;
+
+    /deep/ .mat-button-wrapper {
+      width: 65px;
+      height: 65px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      .mat-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 40px;
+      }
+    }
   }
 }

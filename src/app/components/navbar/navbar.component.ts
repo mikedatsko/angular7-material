@@ -7,6 +7,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
   @Input() menu: any[];
+  isShowMobileMenu: boolean = false;
 
   constructor() { }
 

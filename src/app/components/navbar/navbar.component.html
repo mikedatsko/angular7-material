@@ -16,7 +16,7 @@
         </svg>
       </a>
     </mat-grid-tile>
-    <mat-grid-tile>
+    <mat-grid-tile class="top-menu" [class.mobile-menu]="isShowMobileMenu">
       <button
         *ngFor="let menuItem of menu"
         [routerLink]="menuItem.path"
@@ -24,6 +24,7 @@
         [ngClass]="[menuItem.className || '']"
         (mouseenter)="hoverItem(menuItem)"
         (mouseleave)="unHoverItem(menuItem)"
+        (click)="isShowMobileMenu = false"
         mat-button
       >
         {{menuItem.title}}
@@ -57,6 +58,11 @@
       </button>
     </mat-grid-tile>
   </mat-grid-list>
+
+  <button (click)="isShowMobileMenu = !isShowMobileMenu" class="mobile-menu-toggle-button" mat-button>
+    <mat-icon *ngIf="!isShowMobileMenu">menu</mat-icon>
+    <mat-icon *ngIf="isShowMobileMenu">close</mat-icon>
+  </button>
 </mat-toolbar>
 
 <div class="navbar-padding"></div>

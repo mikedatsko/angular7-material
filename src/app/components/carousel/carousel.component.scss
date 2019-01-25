@@ -98,4 +98,54 @@
       }
     }
   }
+
+  @media (max-width: 767px) {
+    /deep/ .owl-carousel {
+      .owl-stage-outer {
+        owl-stage {
+          & > div {
+            .owl-stage {
+              .owl-item {
+                .owl-slide-background {
+                  .row {
+                    .col {
+                      &.owl-description {
+                        h3 {
+                          font-size: 24px;
+                        }
+
+                        p {
+                          font-size: 16px;
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+
+      .owl-dots {
+        .owl-dot {
+          span {
+            width: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            overflow: hidden;
+            margin: 0 2px;
+            padding: 0 0 0 20px;
+          }
+
+          &.active {
+            span {
+              background-color: #25b9c6;
+              padding: 0 20px;
+              width: auto;
+            }
+          }
+        }
+      }
+    }
+  }
 }

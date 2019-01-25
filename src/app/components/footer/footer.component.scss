@@ -18,6 +18,8 @@
       }
 
       .market-icons {
+        text-align: right;
+
         a {
           margin-left: 7px;
         }
@@ -99,6 +101,63 @@
         &.twitter {
           [class^="icon-"] {
             color: #54B9CC;
+          }
+        }
+      }
+    }
+  }
+
+  @media (max-width: 767px) {
+    .container {
+      .logo-market-icons {
+        display: none;
+      }
+
+      .bottom-menu {
+        display: flex;
+        flex-direction: column;
+
+        .mat-list-item {
+          padding: 15px 0;
+          border-right: 0;
+          border-bottom: 1px solid #373737;
+          height: auto;
+          font-size: 22px;
+        }
+      }
+
+      .copyright {
+        text-align: center;
+        padding: 20px 0;
+        font-size: 20px;
+      }
+
+      .social {
+        display: flex;
+        margin: 20px 0 40px;
+        justify-content: center;
+
+        /deep/ .mat-list-item {
+          .mat-list-item-content {
+            padding: 0;
+
+            a {
+              span {
+                display: none;
+              }
+
+              [class^="icon-"] {
+                margin-right: 0px;
+                font-size: 55px;
+                position: relative;
+                top: 0px;
+                display: block;
+              }
+            }
+          }
+
+          &.facebook {
+            margin-right: 40px;
           }
         }
       }

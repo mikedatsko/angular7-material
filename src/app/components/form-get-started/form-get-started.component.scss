@@ -68,4 +68,27 @@
       font-weight: 400;
     }
   }
+
+  @media (max-width: 767px) {
+    .container {
+      text-align: center;
+
+      h3 {
+        font-size: 50px;
+        font-weight: 700;
+      }
+
+      p {
+        margin-bottom: 46px;
+        margin-top: 24px;
+        font-size: 20px;
+      }
+
+      /deep/ .mat-form-field {
+        .mat-form-field-wrapper {
+          margin: 8px 20px 8px 20px;
+        }
+      }
+    }
+  }
 }

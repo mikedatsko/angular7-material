@@ -12,6 +12,10 @@
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
 @import 'assets/icons/style.css';
 
+* {
+  outline: none !important;
+}
+
 .tk-sofia-pro { font-family: 'sofia-pro',sans-serif; }
 
 html {

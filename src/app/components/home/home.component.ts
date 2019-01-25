@@ -10,6 +10,7 @@ export class HomeComponent implements OnInit {
     {
       id: '1',
       title: 'The #1 most used Android shopping list app is now available free for iOS',
+      titleTab: 'Screen 1',
       description: 'Start creating and sharing shopping lists with friends and family.',
       action: () => alert('Hello'),
       buttonTitle: 'Download',
@@ -19,6 +20,7 @@ export class HomeComponent implements OnInit {
     {
       id: '2',
       title: 'UniverSL',
+      titleTab: 'Screen 2',
       description: 'Browse and save our list ideas directly to your Out of Milk account. Join our network of recipe bloggers to make your recipes interactive, and keep your fans engaged.',
       action: () => alert('Hello'),
       buttonTitle: 'Sign up',
@@ -28,6 +30,7 @@ export class HomeComponent implements OnInit {
     {
       id: '3',
       title: 'The Out of Milk Web App',
+      titleTab: 'Screen 3',
       description: 'Sign in to create & share shopping lists!',
       action: () => alert('Hello'),
       buttonTitle: 'Sign up',
@@ -37,6 +40,7 @@ export class HomeComponent implements OnInit {
     {
       id: '4',
       title: 'Title',
+      titleTab: 'Screen 4',
       description: 'Lorem ipsum',
       action: () => alert('Hello'),
       buttonTitle: 'Sign up',

@@ -69,8 +69,33 @@
     .owl-dots {
       bottom: 0;
       position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
+      height: 63px;
+      border-top: 1px solid rgba(55, 55, 55, 0.5);
+      width: 100%;
+
+      .owl-dot {
+        height: 100%;
+
+        span {
+          width: auto;
+          height: 100%;
+          display: flex;
+          border-radius: 0;
+          background: none;
+          padding: 0 20px;
+          align-items: center;
+          color: #fff;
+          font-size: 22px;
+          margin: 0;
+          font-weight: 300;
+        }
+
+        &.active {
+          span {
+            background-color: #25b9c6;
+          }
+        }
+      }
     }
   }
 }

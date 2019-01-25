@@ -1,1 +1,19 @@
-/* You can add global styles to this file, and also import other style files */
+@import url("https://p.typekit.net/p.css?s=1&k=usz0ztd&ht=tk&f=24547&a=6495120&app=typekit&e=css");
+
+@font-face {
+  font-family:"sofia-pro";
+  src:url("https://use.typekit.net/af/5855b2/00000000000000003b9b1a98/27/l?primer=81a69539b194230396845be9681d114557adfb35f4cccc679c164afb4aa47365&fvd=n4&v=3") format("woff2"),url("https://use.typekit.net/af/5855b2/00000000000000003b9b1a98/27/d?primer=81a69539b194230396845be9681d114557adfb35f4cccc679c164afb4aa47365&fvd=n4&v=3") format("woff"),url("https://use.typekit.net/af/5855b2/00000000000000003b9b1a98/27/a?primer=81a69539b194230396845be9681d114557adfb35f4cccc679c164afb4aa47365&fvd=n4&v=3") format("opentype");
+  font-style:normal;font-weight:400;
+}
+
+.tk-sofia-pro { font-family: "sofia-pro",sans-serif; }
+
+html {
+  line-height: 1.15;
+  height: 100%;
+}
+
+body {
+  height: 100%;
+  margin: 0;
+}

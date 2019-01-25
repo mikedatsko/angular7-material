@@ -1,0 +1,22 @@
+:host {
+  background: #050505;
+  display: flex;
+  align-items: center;
+  min-height: 394px;
+
+  .container {
+    width: 800px;
+
+    .bottom-menu {
+      display: flex;
+
+      .mat-list-item {
+        color: #fff;
+        background: none;
+        border: 0;
+        padding: 0;
+        font-size: 12px;
+      }
+    }
+  }
+}

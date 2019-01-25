@@ -6,6 +6,10 @@
   font-style:normal;font-weight:400;
 }
 
+@import '~ngx-owl-carousel-o/lib/styles/scss/owl.carousel';
+@import '~ngx-owl-carousel-o/lib/styles/scss/owl.theme.default';
+@import '~bootstrap/scss/bootstrap';
+
 .tk-sofia-pro { font-family: "sofia-pro",sans-serif; }
 
 html {
@@ -16,4 +20,9 @@ html {
 body {
   height: 100%;
   margin: 0;
+}
+
+.container {
+  max-width: 1050px;
+  margin: 0 auto;
 }

@@ -4,17 +4,21 @@
   height: 65px;
   align-items: center;
   justify-content: center;
+  position: relative;
+  z-index: 2;
 
   .toolbar {
-    max-width: 1050px;
     padding: 0;
     position: fixed;
     top: 0;
     background: #fff;
+    display: flex;
+    justify-content: center;
 
     .mat-grid-list {
       width: 100%;
       height: 100%;
+      max-width: 1050px;
 
       /deep/ .mat-grid-tile {
         &:first-child {

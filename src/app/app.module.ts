@@ -10,19 +10,27 @@ import {
   MatToolbarModule,
   MatListModule,
   MatFormFieldModule,
-  MatInputModule
+  MatInputModule,
+  MatCheckboxModule
 } from '@angular/material';
 import { CarouselModule } from 'ngx-owl-carousel-o';
+import { NgScrollbarModule } from 'ngx-scrollbar';
+// import { PerfectScrollbarModule, PERFECT_SCROLLBAR_CONFIG, PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {
   CarouselComponent,
+  CheckoutComponent,
   FooterComponent,
   FormGetStartedComponent,
   HomeComponent,
   NavbarComponent
 } from './components';
+
+// const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
+//   suppressScrollX: true
+// };
 
 @NgModule({
   imports: [
@@ -39,17 +47,25 @@ import {
     MatListModule,
     MatFormFieldModule,
     MatInputModule,
-    CarouselModule
+    MatCheckboxModule,
+    CarouselModule,
+    NgScrollbarModule
   ],
   declarations: [
     AppComponent,
-    HomeComponent,
-    NavbarComponent,
     CarouselComponent,
+    CheckoutComponent,
+    FooterComponent,
     FormGetStartedComponent,
-    FooterComponent
+    HomeComponent,
+    NavbarComponent
   ],
-  providers: [],
+  providers: [
+    // {
+    //   provide: PERFECT_SCROLLBAR_CONFIG,
+    //   useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG
+    // }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

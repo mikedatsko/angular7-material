@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-form-get-started',
@@ -7,13 +7,28 @@ import { FormControl, Validators } from '@angular/forms';
   styleUrls: ['./form-get-started.component.scss']
 })
 export class FormGetStartedComponent implements OnInit {
-  constructor() { }
+
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }
 
   getStarted(form) {
-    alert('Email: ' + form.controls.email.value);
+    if (!form) {
+      return;
+    }
+
+    form.controls.email.setErrors(null);
+    const email = form.controls.email.value;
+
+    if (!email) {
+      form.controls.email.setErrors({
+        required: true
+      });
+      return;
+    }
+
     form.reset();
+    this.router.navigate(['/checkout', {email}]);
   }
 }

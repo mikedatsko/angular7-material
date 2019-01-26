@@ -1,0 +1,50 @@
+<div class="container">
+  <h1>Checkout</h1>
+
+  <div class="row checkout">
+    <div class="col-md-3">
+      <ng-scrollbar class="texts-list">
+        <mat-list>
+          <mat-list-item *ngFor="let text of textsList" [innerText]="text"></mat-list-item>
+        </mat-list>
+      </ng-scrollbar>
+    </div>
+    <div class="col-md-6">
+      <mat-form-field class="search-bar">
+        <input matInput placeholder="Search" type="text" name="search" (input)="onSearch($event)">
+        <span matPrefix>
+          <mat-icon>search</mat-icon>
+        </span>
+      </mat-form-field>
+
+      <ng-scrollbar class="tiles-list">
+        <mat-grid-list cols="3">
+          <mat-grid-tile
+            *ngFor="let tile of filteredTiles"
+            class="tile"
+          >
+            <span class="tile-title" [innerText]="tile.title"></span>
+            <mat-checkbox class="tile-checkbox" [checked]="tile.isSelected"></mat-checkbox>
+            <span class="tile-selector" (click)="toggleTile(tile)"></span>
+            <img class="tile-image" [attr.src]="tile.imagePath" alt="">
+          </mat-grid-tile>
+        </mat-grid-list>
+      </ng-scrollbar>
+    </div>
+    <div class="col-md-3">
+      <ng-scrollbar class="selected-tiles-list">
+        <div *ngFor="let tile of selectedTiles" class="selected-tile">
+          <div class="selected-tile-title" [innerText]="tile.title"></div>
+          <div class="selected-tile-price" [innerText]="tile.price | currency"></div>
+          <div class="selected-tile-image">
+            <img [attr.src]="tile.imagePath" alt="">
+          </div>
+        </div>
+      </ng-scrollbar>
+
+      <mat-divider></mat-divider>
+
+      <div [innerText]="getSelectedSum() | currency" class="sum"></div>
+    </div>
+  </div>
+</div>

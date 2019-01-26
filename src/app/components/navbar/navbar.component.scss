@@ -138,6 +138,16 @@
   }
 
   @media (max-width: 959px) {
+    .toolbar {
+      .mat-grid-list {
+        /deep/ .mat-grid-tile {
+          &:first-child {
+            width: calc(100vw - 65px) !important;
+          }
+        }
+      }
+    }
+
     .top-menu {
       display: none;
 

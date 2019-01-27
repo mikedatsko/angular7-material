@@ -1,7 +1,6 @@
-import { Component, OnInit, OnDestroy, AfterContentChecked, ViewChild } from '@angular/core';
+import { Component, OnInit, OnDestroy, AfterContentChecked, ViewChild, ElementRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { map } from 'rxjs/operators';
-import { NgScrollbar } from 'ngx-scrollbar';
 
 @Component({
   selector: 'app-checkout',
@@ -9,7 +8,8 @@ import { NgScrollbar } from 'ngx-scrollbar';
   styleUrls: ['./checkout.component.scss']
 })
 export class CheckoutComponent implements OnInit, OnDestroy, AfterContentChecked {
-  @ViewChild(NgScrollbar) categoriesScrollbarRef: NgScrollbar;
+  @ViewChild('categoriesRef') categoriesRef: ElementRef;
+  @ViewChild('tilesRef') tilesRef: ElementRef;
   subs: any[] = [];
   categoriesList: any[] = [
     {
@@ -80,55 +80,57 @@ export class CheckoutComponent implements OnInit, OnDestroy, AfterContentChecked
       color: 'yellow',
       tiles: []
     },
-    // {
-    //   id: '07',
-    //   title: 'Lorem Ipsum 7',
-    //   icon: 'home',
-    //   color: 'magenta',
-    //   tiles: []
-    // },
-    // {
-    //   id: '08',
-    //   title: 'Lorem Ipsum 8',
-    //   icon: 'home',
-    //   color: 'dodgerblue',
-    //   tiles: []
-    // },
-    // {
-    //   id: '09',
-    //   title: 'Lorem Ipsum 9',
-    //   icon: 'home',
-    //   color: 'pink',
-    //   tiles: []
-    // },
-    // {
-    //   id: '10',
-    //   title: 'Lorem Ipsum 10',
-    //   icon: 'home',
-    //   color: 'greenyellow',
-    //   tiles: []
-    // },
-    // {
-    //   id: '11',
-    //   title: 'Lorem Ipsum 11',
-    //   icon: 'home',
-    //   color: 'crimson',
-    //   tiles: []
-    // },
-    // {
-    //   id: '12',
-    //   title: 'Lorem Ipsum 12',
-    //   icon: 'home',
-    //   color: 'grey',
-    //   tiles: []
-    // }
+    {
+      id: '07',
+      title: 'Lorem Ipsum 7',
+      icon: 'home',
+      color: 'magenta',
+      tiles: []
+    },
+    {
+      id: '08',
+      title: 'Lorem Ipsum 8',
+      icon: 'home',
+      color: 'dodgerblue',
+      tiles: []
+    },
+    {
+      id: '09',
+      title: 'Lorem Ipsum 9',
+      icon: 'home',
+      color: 'pink',
+      tiles: []
+    },
+    {
+      id: '10',
+      title: 'Lorem Ipsum 10',
+      icon: 'home',
+      color: 'greenyellow',
+      tiles: []
+    },
+    {
+      id: '11',
+      title: 'Lorem Ipsum 11',
+      icon: 'home',
+      color: 'crimson',
+      tiles: []
+    },
+    {
+      id: '12',
+      title: 'Lorem Ipsum 12',
+      icon: 'home',
+      color: 'grey',
+      tiles: []
+    }
   ];
   filteredTiles: any[] = [];
   selectedTiles: any[] = [];
   selectedCategory: string = '';
   search: string = '';
+  filteredTilesWidth: number = 300;
   isShowCart: boolean = false;
-  isShowNavScrollbar: boolean = false;
+  isShowNavCategoriesScrollbar: boolean = false;
+  isShowNavTilesScrollbar: boolean = false;
 
   constructor(private route: ActivatedRoute) { }
 
@@ -151,16 +153,26 @@ export class CheckoutComponent implements OnInit, OnDestroy, AfterContentChecked
   }
 
   ngAfterContentChecked() {
-    this.checkNavScrollbar();
+    this.checkNavCategoriesScrollbar();
+    this.checkNavTilesScrollbar();
   }
 
-  checkNavScrollbar() {
-    if (!this.categoriesScrollbarRef || !this.categoriesScrollbarRef.scrollable) {
+  checkNavCategoriesScrollbar() {
+    if (!this.categoriesRef || !this.categoriesRef.nativeElement) {
       return;
     }
 
-    const { clientWidth, scrollWidth } = this.categoriesScrollbarRef.scrollable.getElementRef().nativeElement;
-    this.isShowNavScrollbar = clientWidth < scrollWidth;
+    const { clientWidth, scrollWidth } = this.categoriesRef.nativeElement;
+    this.isShowNavCategoriesScrollbar = clientWidth < scrollWidth;
+  }
+
+  checkNavTilesScrollbar() {
+    if (!this.tilesRef || !this.tilesRef.nativeElement) {
+      return;
+    }
+
+    const { clientWidth } = this.tilesRef.nativeElement;
+    this.isShowNavTilesScrollbar = clientWidth < this.filteredTilesWidth;
   }
 
   getSelectedSum() {
@@ -181,10 +193,16 @@ export class CheckoutComponent implements OnInit, OnDestroy, AfterContentChecked
 
     if (!this.search) {
       this.filteredTiles = [...tiles];
+      this.setFilteredTilesWidth();
       return;
     }
 
     this.filteredTiles = tiles.filter(tile => tile.title.toLowerCase().search(this.search) > -1);
+    this.setFilteredTilesWidth();
+  }
+
+  setFilteredTilesWidth() {
+    this.filteredTilesWidth = Math.ceil(this.filteredTiles.length / 2) * 182;
   }
 
   toggleTile(tile) {
@@ -207,14 +225,34 @@ export class CheckoutComponent implements OnInit, OnDestroy, AfterContentChecked
   }
 
   scrollCategories(direction) {
-    if (direction === 'left') {
-      this.categoriesScrollbarRef.scrollToLeft(500).subscribe();
+    if (!this.categoriesRef || !this.categoriesRef.nativeElement) {
       return;
     }
 
+    const { scrollLeft, scrollWidth } = this.categoriesRef.nativeElement;
+
+    if (direction === 'left') {
+      this.categoriesRef.nativeElement.scrollLeft = scrollLeft - 80 <= 0 ? 0 : scrollLeft - 80;
+    }
+
     if (direction === 'right') {
-      this.categoriesScrollbarRef.scrollToRight(500).subscribe();
+      this.categoriesRef.nativeElement.scrollLeft = scrollLeft + 80 >= scrollWidth ? scrollLeft : scrollLeft + 80;
+    }
+  }
+
+  scrollTiles(direction) {
+    if (!this.tilesRef || !this.tilesRef.nativeElement) {
       return;
+    }
+
+    const { scrollLeft, scrollWidth } = this.tilesRef.nativeElement;
+
+    if (direction === 'left') {
+      this.tilesRef.nativeElement.scrollLeft = scrollLeft - 182 <= 0 ? 0 : scrollLeft - 182;
+    }
+
+    if (direction === 'right') {
+      this.tilesRef.nativeElement.scrollLeft = scrollLeft + 182 >= scrollWidth ? scrollLeft : scrollLeft + 182;
     }
   }
 }

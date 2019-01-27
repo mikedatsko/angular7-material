@@ -1,13 +1,15 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, AfterContentChecked, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { map } from 'rxjs/operators';
+import { NgScrollbar } from 'ngx-scrollbar';
 
 @Component({
   selector: 'app-checkout',
   templateUrl: './checkout.component.html',
   styleUrls: ['./checkout.component.scss']
 })
-export class CheckoutComponent implements OnInit, OnDestroy {
+export class CheckoutComponent implements OnInit, OnDestroy, AfterContentChecked {
+  @ViewChild(NgScrollbar) categoriesScrollbarRef: NgScrollbar;
   subs: any[] = [];
   categoriesList: any[] = [
     {
@@ -16,17 +18,17 @@ export class CheckoutComponent implements OnInit, OnDestroy {
       icon: 'home',
       color: 'blue',
       tiles: [
-        {id: '001', title: 'One', price: 1, imagePath: 'https://dummyimage.com/170'},
-        {id: '002', title: 'Two', price: 2, imagePath: 'https://dummyimage.com/170'},
-        {id: '003', title: 'Three', price: 3, imagePath: 'https://dummyimage.com/170'},
-        {id: '004', title: 'Four', price: 4, imagePath: 'https://dummyimage.com/170'},
-        {id: '005', title: 'One', price: 1, imagePath: 'https://dummyimage.com/170'},
-        {id: '006', title: 'Two', price: 2, imagePath: 'https://dummyimage.com/170'},
-        {id: '007', title: 'Three', price: 5, imagePath: 'https://dummyimage.com/170'},
-        {id: '008', title: 'Four', price: 6, imagePath: 'https://dummyimage.com/170'},
-        {id: '009', title: 'One', price: 7, imagePath: 'https://dummyimage.com/170'},
-        {id: '010', title: 'Two', price: 8, imagePath: 'https://dummyimage.com/170'},
-        {id: '011', title: 'Three', price: 2, imagePath: 'https://dummyimage.com/170'},
+        {id: '001', title: 'One', price: 1, imagePath: 'https://dummyimage.com/250'},
+        {id: '002', title: 'Two', price: 2, imagePath: 'https://dummyimage.com/250'},
+        {id: '003', title: 'Three', price: 3, imagePath: 'https://dummyimage.com/250'},
+        {id: '004', title: 'Four', price: 4, imagePath: 'https://dummyimage.com/250'},
+        {id: '005', title: 'One', price: 1, imagePath: 'https://dummyimage.com/250'},
+        {id: '006', title: 'Two', price: 2, imagePath: 'https://dummyimage.com/250'},
+        {id: '007', title: 'Three', price: 5, imagePath: 'https://dummyimage.com/250'},
+        {id: '008', title: 'Four', price: 6, imagePath: 'https://dummyimage.com/250'},
+        {id: '009', title: 'One', price: 7, imagePath: 'https://dummyimage.com/250'},
+        {id: '010', title: 'Two', price: 8, imagePath: 'https://dummyimage.com/250'},
+        {id: '011', title: 'Three', price: 2, imagePath: 'https://dummyimage.com/250'},
       ]
     },
     {
@@ -35,10 +37,10 @@ export class CheckoutComponent implements OnInit, OnDestroy {
       icon: 'search',
       color: 'red',
       tiles: [
-        {id: '102', title: 'Two', price: 2, imagePath: 'https://dummyimage.com/170'},
-        {id: '103', title: 'Three', price: 3, imagePath: 'https://dummyimage.com/170'},
-        {id: '104', title: 'Four', price: 4, imagePath: 'https://dummyimage.com/170'},
-        {id: '105', title: 'One', price: 1, imagePath: 'https://dummyimage.com/170'},
+        {id: '102', title: 'Two', price: 2, imagePath: 'https://dummyimage.com/250'},
+        {id: '103', title: 'Three', price: 3, imagePath: 'https://dummyimage.com/250'},
+        {id: '104', title: 'Four', price: 4, imagePath: 'https://dummyimage.com/250'},
+        {id: '105', title: 'One', price: 1, imagePath: 'https://dummyimage.com/250'},
       ]
     },
     {
@@ -47,14 +49,14 @@ export class CheckoutComponent implements OnInit, OnDestroy {
       icon: 'remove',
       color: 'green',
       tiles: [
-        {id: '201', title: 'One', price: 1, imagePath: 'https://dummyimage.com/170'},
-        {id: '202', title: 'Two', price: 2, imagePath: 'https://dummyimage.com/170'},
-        {id: '203', title: 'Three', price: 3, imagePath: 'https://dummyimage.com/170'},
-        {id: '204', title: 'Four', price: 4, imagePath: 'https://dummyimage.com/170'},
-        {id: '205', title: 'One', price: 1, imagePath: 'https://dummyimage.com/170'},
-        {id: '206', title: 'Two', price: 2, imagePath: 'https://dummyimage.com/170'},
-        {id: '207', title: 'Three', price: 5, imagePath: 'https://dummyimage.com/170'},
-        {id: '208', title: 'Four', price: 6, imagePath: 'https://dummyimage.com/170'},
+        {id: '201', title: 'One', price: 1, imagePath: 'https://dummyimage.com/250'},
+        {id: '202', title: 'Two', price: 2, imagePath: 'https://dummyimage.com/250'},
+        {id: '203', title: 'Three', price: 3, imagePath: 'https://dummyimage.com/250'},
+        {id: '204', title: 'Four', price: 4, imagePath: 'https://dummyimage.com/250'},
+        {id: '205', title: 'One', price: 1, imagePath: 'https://dummyimage.com/250'},
+        {id: '206', title: 'Two', price: 2, imagePath: 'https://dummyimage.com/250'},
+        {id: '207', title: 'Three', price: 5, imagePath: 'https://dummyimage.com/250'},
+        {id: '208', title: 'Four', price: 6, imagePath: 'https://dummyimage.com/250'},
       ]
     },
     {
@@ -78,54 +80,55 @@ export class CheckoutComponent implements OnInit, OnDestroy {
       color: 'yellow',
       tiles: []
     },
-    {
-      id: '07',
-      title: 'Lorem Ipsum 7',
-      icon: 'home',
-      color: 'magenta',
-      tiles: []
-    },
-    {
-      id: '08',
-      title: 'Lorem Ipsum 8',
-      icon: 'home',
-      color: 'dodgerblue',
-      tiles: []
-    },
-    {
-      id: '09',
-      title: 'Lorem Ipsum 9',
-      icon: 'home',
-      color: 'pink',
-      tiles: []
-    },
-    {
-      id: '10',
-      title: 'Lorem Ipsum 10',
-      icon: 'home',
-      color: 'greenyellow',
-      tiles: []
-    },
-    {
-      id: '11',
-      title: 'Lorem Ipsum 11',
-      icon: 'home',
-      color: 'crimson',
-      tiles: []
-    },
-    {
-      id: '12',
-      title: 'Lorem Ipsum 12',
-      icon: 'home',
-      color: 'grey',
-      tiles: []
-    }
+    // {
+    //   id: '07',
+    //   title: 'Lorem Ipsum 7',
+    //   icon: 'home',
+    //   color: 'magenta',
+    //   tiles: []
+    // },
+    // {
+    //   id: '08',
+    //   title: 'Lorem Ipsum 8',
+    //   icon: 'home',
+    //   color: 'dodgerblue',
+    //   tiles: []
+    // },
+    // {
+    //   id: '09',
+    //   title: 'Lorem Ipsum 9',
+    //   icon: 'home',
+    //   color: 'pink',
+    //   tiles: []
+    // },
+    // {
+    //   id: '10',
+    //   title: 'Lorem Ipsum 10',
+    //   icon: 'home',
+    //   color: 'greenyellow',
+    //   tiles: []
+    // },
+    // {
+    //   id: '11',
+    //   title: 'Lorem Ipsum 11',
+    //   icon: 'home',
+    //   color: 'crimson',
+    //   tiles: []
+    // },
+    // {
+    //   id: '12',
+    //   title: 'Lorem Ipsum 12',
+    //   icon: 'home',
+    //   color: 'grey',
+    //   tiles: []
+    // }
   ];
   filteredTiles: any[] = [];
   selectedTiles: any[] = [];
   selectedCategory: string = '';
   search: string = '';
   isShowCart: boolean = false;
+  isShowNavScrollbar: boolean = false;
 
   constructor(private route: ActivatedRoute) { }
 
@@ -145,6 +148,19 @@ export class CheckoutComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.subs.forEach(sub => sub.unsubscribe());
+  }
+
+  ngAfterContentChecked() {
+    this.checkNavScrollbar();
+  }
+
+  checkNavScrollbar() {
+    if (!this.categoriesScrollbarRef || !this.categoriesScrollbarRef.scrollable) {
+      return;
+    }
+
+    const { clientWidth, scrollWidth } = this.categoriesScrollbarRef.scrollable.getElementRef().nativeElement;
+    this.isShowNavScrollbar = clientWidth < scrollWidth;
   }
 
   getSelectedSum() {
@@ -187,6 +203,18 @@ export class CheckoutComponent implements OnInit, OnDestroy {
 
     if (isShouldRefilter) {
       this.filterTiles();
+    }
+  }
+
+  scrollCategories(direction) {
+    if (direction === 'left') {
+      this.categoriesScrollbarRef.scrollToLeft(500).subscribe();
+      return;
+    }
+
+    if (direction === 'right') {
+      this.categoriesScrollbarRef.scrollToRight(500).subscribe();
+      return;
     }
   }
 }

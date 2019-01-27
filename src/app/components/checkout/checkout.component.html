@@ -1,37 +1,44 @@
 <div class="container">
   <h1>Checkout</h1>
 
-  <ng-scrollbar [trackY]="false" [trackX]="true">
-    <div class="categories-list">
-      <div
-        *ngFor="let category of categoriesList"
-        (click)="selectCategory(category.id)"
-        [class.active]="category.id === selectedCategory"
-        class="category"
-      >
-        <div class="category-icon">
-          <mat-icon [style.color]="category.color || 'black'">{{category.icon}}</mat-icon>
-        </div>
-        <div class="category-title" [innerText]="category.title"></div>
-      </div>
-    </div>
-  </ng-scrollbar>
-
-  <mat-form-field class="search-bar">
-    <input matInput placeholder="Search" type="text" name="search" (input)="onSearch($event)">
-    <span matPrefix>
-      <mat-icon>search</mat-icon>
-    </span>
-    <span (click)="isShowCart = !isShowCart" matSuffix class="cart-button">
-      <mat-icon>shopping_basket</mat-icon>
-      <span *ngIf="selectedTiles.length" [innerText]="selectedTiles.length" class="cart-selected-tiles"></span>
-    </span>
-  </mat-form-field>
-
-  <div [innerText]="getSelectedSum() | currency" class="sum"></div>
-
   <div class="row checkout">
     <div class="col-md-8">
+      <div *ngIf="isShowNavScrollbar" class="nav-scrollbar">
+        <div class="nav-scrollbar-left" (click)="scrollCategories('left')">
+          <mat-icon>keyboard_arrow_left</mat-icon>
+        </div>
+        <div class="nav-scrollbar-right" (click)="scrollCategories('right')">
+          <mat-icon>keyboard_arrow_right</mat-icon>
+        </div>
+      </div>
+
+      <ng-scrollbar #categoriesScrollbarRef [trackY]="false" [trackX]="true" class="categories-scrollbar">
+        <div class="categories-list">
+          <div
+            *ngFor="let category of categoriesList"
+            (click)="selectCategory(category.id)"
+            [class.active]="category.id === selectedCategory"
+            class="category"
+          >
+            <div class="category-icon">
+              <mat-icon [style.color]="category.color || 'black'">{{category.icon}}</mat-icon>
+            </div>
+            <div class="category-title" [innerText]="category.title"></div>
+          </div>
+        </div>
+      </ng-scrollbar>
+
+      <mat-form-field class="search-bar">
+        <input matInput placeholder="Search" type="text" name="search" (input)="onSearch($event)">
+        <span matPrefix>
+          <mat-icon>search</mat-icon>
+        </span>
+        <span (click)="isShowCart = !isShowCart" matSuffix class="cart-button">
+          <mat-icon>shopping_basket</mat-icon>
+          <span *ngIf="selectedTiles.length" [innerText]="selectedTiles.length" class="cart-selected-tiles"></span>
+        </span>
+      </mat-form-field>
+
       <ng-scrollbar class="tiles-list">
         <mat-grid-list cols="3">
           <mat-grid-tile
@@ -47,6 +54,10 @@
       </ng-scrollbar>
     </div>
     <div class="col-md-4 cart" [class.show]="isShowCart" [class.empty]="!selectedTiles.length">
+      <mat-icon (click)="isShowCart = false">close</mat-icon>
+
+      <div [innerText]="getSelectedSum() | currency" class="sum"></div>
+
       <ng-scrollbar *ngIf="selectedTiles.length" class="selected-tiles-list">
         <div *ngFor="let tile of selectedTiles" class="selected-tile">
           <div class="selected-tile-title" [innerText]="tile.title"></div>

@@ -2,7 +2,7 @@
   <h1>Checkout</h1>
 
   <div class="row checkout">
-    <div class="col-md-8">
+    <div #tilesRef class="col-md-8">
       <div #categoriesRef class="categories-list">
         <div
           *ngFor="let category of categoriesList"
@@ -37,24 +37,36 @@
         </span>
       </mat-form-field>
 
-      <div #tilesRef class="tiles-list">
+      <div class="nav-scrollbar" [style.visibility]="isShowNavTilesScrollbar ? 'visible' : 'hidden'">
+        <div class="nav-scrollbar-left" (click)="scrollTiles('left')">
+          <mat-icon>keyboard_arrow_left</mat-icon>
+        </div>
+
+        <div
+          *ngFor="let page of filteredTilesPages; let pageIndex = index"
+          [innerText]="page"
+          (click)="setTilesPage(pageIndex)"
+          [class.active]="pageIndex === filteredTilesPage"
+          class="nav-scrollbar-page"
+        >
+        </div>
+
+        <div class="nav-scrollbar-right" (click)="scrollTiles('right')">
+          <mat-icon>keyboard_arrow_right</mat-icon>
+        </div>
+      </div>
+
+      <div class="tiles-list" [style.height.px]="tileSize * 2" [style.width.px]="tileSize * tileColumns">
         <div
           *ngFor="let tile of filteredTiles"
+          [style.width.px]="tileSize - 2"
+          [style.height.px]="tileSize - 2"
           class="tile"
         >
           <span class="tile-title" [innerText]="tile.title"></span>
           <mat-checkbox class="tile-checkbox" [checked]="tile.isSelected"></mat-checkbox>
           <span class="tile-selector" (click)="toggleTile(tile)"></span>
           <img class="tile-image" [attr.src]="tile.imagePath" alt="">
-        </div>
-      </div>
-
-      <div *ngIf="isShowNavTilesScrollbar" class="nav-scrollbar">
-        <div class="nav-scrollbar-left" (click)="scrollTiles('left')">
-          <mat-icon>keyboard_arrow_left</mat-icon>
-        </div>
-        <div class="nav-scrollbar-right" (click)="scrollTiles('right')">
-          <mat-icon>keyboard_arrow_right</mat-icon>
         </div>
       </div>
     </div>

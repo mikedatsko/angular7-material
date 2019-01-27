@@ -22,13 +22,13 @@ export class CheckoutComponent implements OnInit, OnDestroy, AfterContentChecked
         {id: '002', title: 'Two', price: 2, imagePath: 'https://dummyimage.com/250'},
         {id: '003', title: 'Three', price: 3, imagePath: 'https://dummyimage.com/250'},
         {id: '004', title: 'Four', price: 4, imagePath: 'https://dummyimage.com/250'},
-        {id: '005', title: 'One', price: 1, imagePath: 'https://dummyimage.com/250'},
-        {id: '006', title: 'Two', price: 2, imagePath: 'https://dummyimage.com/250'},
-        {id: '007', title: 'Three', price: 5, imagePath: 'https://dummyimage.com/250'},
-        {id: '008', title: 'Four', price: 6, imagePath: 'https://dummyimage.com/250'},
-        {id: '009', title: 'One', price: 7, imagePath: 'https://dummyimage.com/250'},
-        {id: '010', title: 'Two', price: 8, imagePath: 'https://dummyimage.com/250'},
-        {id: '011', title: 'Three', price: 2, imagePath: 'https://dummyimage.com/250'},
+        {id: '005', title: 'Five', price: 1, imagePath: 'https://dummyimage.com/250'},
+        {id: '006', title: 'Six', price: 2, imagePath: 'https://dummyimage.com/250'},
+        {id: '007', title: 'Seven', price: 5, imagePath: 'https://dummyimage.com/250'},
+        {id: '008', title: 'Eight', price: 6, imagePath: 'https://dummyimage.com/250'},
+        {id: '009', title: 'Nine', price: 7, imagePath: 'https://dummyimage.com/250'},
+        {id: '010', title: 'Ten', price: 8, imagePath: 'https://dummyimage.com/250'},
+        {id: '011', title: 'Eleven', price: 2, imagePath: 'https://dummyimage.com/250'},
       ]
     },
     {
@@ -124,10 +124,15 @@ export class CheckoutComponent implements OnInit, OnDestroy, AfterContentChecked
     }
   ];
   filteredTiles: any[] = [];
+  filteredTilesAll: any[] = [];
   selectedTiles: any[] = [];
   selectedCategory: string = '';
   search: string = '';
-  filteredTilesWidth: number = 300;
+  tileSize: number = 0;
+  filteredTilesPage: number = 0;
+  filteredTilesPages: number[] = [];
+  tilesPerPage: number = 6;
+  tileColumns: number = 3;
   isShowCart: boolean = false;
   isShowNavCategoriesScrollbar: boolean = false;
   isShowNavTilesScrollbar: boolean = false;
@@ -154,7 +159,7 @@ export class CheckoutComponent implements OnInit, OnDestroy, AfterContentChecked
 
   ngAfterContentChecked() {
     this.checkNavCategoriesScrollbar();
-    this.checkNavTilesScrollbar();
+    this.checkTileSize();
   }
 
   checkNavCategoriesScrollbar() {
@@ -162,17 +167,17 @@ export class CheckoutComponent implements OnInit, OnDestroy, AfterContentChecked
       return;
     }
 
-    const { clientWidth, scrollWidth } = this.categoriesRef.nativeElement;
-    this.isShowNavCategoriesScrollbar = clientWidth < scrollWidth;
+    const { clientWidth } = this.categoriesRef.nativeElement;
+    this.isShowNavCategoriesScrollbar = clientWidth < this.categoriesList.length * 80;
   }
 
-  checkNavTilesScrollbar() {
+  checkTileSize() {
     if (!this.tilesRef || !this.tilesRef.nativeElement) {
       return;
     }
 
     const { clientWidth } = this.tilesRef.nativeElement;
-    this.isShowNavTilesScrollbar = clientWidth < this.filteredTilesWidth;
+    this.tileSize = clientWidth / 3;
   }
 
   getSelectedSum() {
@@ -192,17 +197,33 @@ export class CheckoutComponent implements OnInit, OnDestroy, AfterContentChecked
     const tiles = this.categoriesList.filter(category => category.id === this.selectedCategory)[0].tiles;
 
     if (!this.search) {
-      this.filteredTiles = [...tiles];
-      this.setFilteredTilesWidth();
+      this.filteredTilesAll = [...tiles];
+      this.setFilteredTiles();
       return;
     }
 
-    this.filteredTiles = tiles.filter(tile => tile.title.toLowerCase().search(this.search) > -1);
-    this.setFilteredTilesWidth();
+    this.filteredTilesAll = tiles.filter(tile => tile.title.toLowerCase().search(this.search) > -1);
+    this.setFilteredTiles();
   }
 
-  setFilteredTilesWidth() {
-    this.filteredTilesWidth = Math.ceil(this.filteredTiles.length / 2) * 182;
+  setFilteredTiles() {
+    this.filteredTilesPages = Array.from({length: Math.ceil(this.filteredTilesAll.length / this.tilesPerPage)}, (x, i) => i + 1);
+    this.filteredTilesPage = 0;
+    this.isShowNavTilesScrollbar = !!this.filteredTilesPages.length;
+    this.setTiles();
+  }
+
+  setTiles() {
+    this.filteredTiles = this.filteredTilesAll.slice(
+      this.filteredTilesPage * this.tilesPerPage,
+      this.filteredTilesPage * this.tilesPerPage + this.tilesPerPage
+    );
+    this.tileColumns = Math.ceil(this.filteredTiles.length / 2);
+  }
+
+  setTilesPage(page) {
+    this.filteredTilesPage = page;
+    this.setTiles();
   }
 
   toggleTile(tile) {
@@ -241,18 +262,30 @@ export class CheckoutComponent implements OnInit, OnDestroy, AfterContentChecked
   }
 
   scrollTiles(direction) {
-    if (!this.tilesRef || !this.tilesRef.nativeElement) {
-      return;
-    }
-
-    const { scrollLeft, scrollWidth } = this.tilesRef.nativeElement;
-
     if (direction === 'left') {
-      this.tilesRef.nativeElement.scrollLeft = scrollLeft - 182 <= 0 ? 0 : scrollLeft - 182;
+      const filteredTilesPage = this.filteredTilesPages.includes(this.filteredTilesPage)
+        ? this.filteredTilesPage - 1
+        : this.filteredTilesPage;
+
+      if (filteredTilesPage === this.filteredTilesPage) {
+        return;
+      }
+
+      this.filteredTilesPage = filteredTilesPage;
     }
 
     if (direction === 'right') {
-      this.tilesRef.nativeElement.scrollLeft = scrollLeft + 182 >= scrollWidth ? scrollLeft : scrollLeft + 182;
+      const filteredTilesPage = this.filteredTilesPages.includes(this.filteredTilesPage + 2)
+        ? this.filteredTilesPage + 1
+        : this.filteredTilesPage;
+
+      if (filteredTilesPage === this.filteredTilesPage) {
+        return;
+      }
+
+      this.filteredTilesPage = filteredTilesPage;
     }
+
+    this.setTiles();
   }
 }

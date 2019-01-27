@@ -6,6 +6,7 @@
     position: relative;
     display: flex;
     justify-content: center;
+    margin: 20px 0;
 
     .nav-scrollbar-left {
       position: relative;
@@ -39,6 +40,29 @@
       z-index: 1;
       cursor: pointer;
       margin-left: 10px;
+
+      &:hover {
+        background: rgba(0,0,0,0.1);
+      }
+    }
+
+    .nav-scrollbar-page {
+      position: relative;
+      right: 0;
+      top: 0;
+      height: 30px;
+      width: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0,0,0,0.05);
+      z-index: 1;
+      cursor: pointer;
+      margin: 0 10px;
+
+      &.active {
+        background: rgba(0,0,0,0.2);
+      }
 
       &:hover {
         background: rgba(0,0,0,0.1);

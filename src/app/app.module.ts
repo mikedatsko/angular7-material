@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import {
   MatMenuModule,
   MatButtonModule,
@@ -15,7 +16,6 @@ import {
 } from '@angular/material';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { NgScrollbarModule } from 'ngx-scrollbar';
-// import { PerfectScrollbarModule, PERFECT_SCROLLBAR_CONFIG, PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -28,9 +28,9 @@ import {
   NavbarComponent
 } from './components';
 
-// const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
-//   suppressScrollX: true
-// };
+// import ngx-translate and the http loader
+import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 
 @NgModule({
   imports: [
@@ -49,7 +49,16 @@ import {
     MatInputModule,
     MatCheckboxModule,
     CarouselModule,
-    NgScrollbarModule
+    NgScrollbarModule,
+    // configure the imports
+    HttpClientModule,
+    TranslateModule.forRoot({
+        loader: {
+            provide: TranslateLoader,
+            useFactory: HttpLoaderFactory,
+            deps: [HttpClient]
+        }
+    })
   ],
   declarations: [
     AppComponent,
@@ -69,3 +78,8 @@ import {
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+// required for AOT compilation
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}

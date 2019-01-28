@@ -1,6 +1,4 @@
 <div class="container">
-  <h1>Checkout</h1>
-
   <div class="row checkout">
     <div #tilesRef class="col-md-8">
       <div #categoriesRef class="categories-list">
@@ -11,7 +9,7 @@
           class="category"
         >
           <div class="category-icon">
-            <mat-icon [style.color]="category.color || 'black'">{{category.icon}}</mat-icon>
+            <mat-icon>{{category.icon}}</mat-icon>
           </div>
           <div class="category-title" [innerText]="category.title"></div>
         </div>
@@ -27,7 +25,7 @@
       </div>
 
       <mat-form-field class="search-bar">
-        <input matInput placeholder="Search" type="text" name="search" (input)="onSearch($event)">
+        <input matInput placeholder="{{'basket.search' | translate}}" type="text" name="search" (input)="onSearch($event)">
         <span matPrefix>
           <mat-icon>search</mat-icon>
         </span>

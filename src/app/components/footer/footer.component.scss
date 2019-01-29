@@ -8,6 +8,20 @@
   .container {
     width: 800px;
 
+    .logo {
+      text-decoration: none;
+      color: #25b9c6 !important;
+      font-weight: 900;
+      font-size: 25px;
+    }
+
+    .info{
+      text-decoration: none;
+      color: #25b9c6 !important;
+      font-weight: 500;
+      font-size: 10px;
+    }
+
     .logo-market-icons {
       border-bottom: 1px solid #373737;
       padding: 17px 0 15px;

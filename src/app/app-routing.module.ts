@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { CheckoutComponent, HomeComponent, FeedbackComponent } from './components';
+import { CheckoutComponent, HomeComponent, FeedbackComponent, WhyHiberComponent } from './components';
 
 const routes: Routes = [
   {
@@ -19,6 +19,10 @@ const routes: Routes = [
   {
     path: 'feedback',
     component: FeedbackComponent
+  },
+  {
+    path: 'whyhiber',
+    component: WhyHiberComponent
   },
   {
     path: '**',

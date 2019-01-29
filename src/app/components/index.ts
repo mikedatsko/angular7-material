@@ -4,6 +4,7 @@ export * from './categories';
 export * from './category';
 export * from './checkout';
 export * from './feedback';
+export * from './why-hiber';
 export * from './footer';
 export * from './form-get-started';
 export * from './home';

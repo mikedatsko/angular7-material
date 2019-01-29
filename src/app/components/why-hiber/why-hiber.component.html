@@ -1,0 +1,19 @@
+<div class="shopping">
+    <div class="container">
+        <div class="shopping-description">
+            <h3 class="h3">Virtual hiber assistant does everything for you</h3>
+            <p>Makes grocery shopping a real fun</p>
+
+            <mat-list>
+                <mat-list-item *ngFor="let shopping of shoppingList">
+                    <mat-icon>{{shopping.icon}}</mat-icon>
+                    {{shopping.title}}
+                </mat-list-item>
+            </mat-list>
+        </div>
+        <div class="shopping-video">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/up75o-IhMms" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen></iframe>
+        </div>
+    </div>
+</div>

@@ -15,7 +15,7 @@ export class AppComponent {
   menu: any[] = [
     {
       title: 'Why hiber',
-      path: 'contact',
+      path: 'whyhiber',
       hoverColor: '#25b9c6'
     },
     {

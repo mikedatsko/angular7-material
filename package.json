@@ -36,6 +36,7 @@
     "express": "^4.16.4",
     "ngx-owl-carousel-o": "^1.0.10",
     "ngx-scrollbar": "^4.1.1",
+    "path": "^0.12.7",
     "rxjs": "~6.3.3",
     "tslib": "^1.9.0",
     "typescript": "~3.1.6",

@@ -8,7 +8,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 export class WhyHiberComponent implements OnInit, OnDestroy {
     shoppingList: any[] = [
         {
-            title: 'Flexible ordering',
+            title: 'Flexible and 1-Click ordering',
             icon: 'home'
         },
         {

@@ -24,7 +24,6 @@
     "bootstrap": "^4.2.1",
     "core-js": "^2.5.4",
     "ngx-owl-carousel-o": "^1.0.10",
-    "ngx-perfect-scrollbar": "^7.2.0",
     "ngx-scrollbar": "^4.1.1",
     "rxjs": "~6.3.3",
     "tslib": "^1.9.0",

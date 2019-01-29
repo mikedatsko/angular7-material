@@ -2,9 +2,15 @@
 @import '~ngx-owl-carousel-o/lib/styles/scss/owl.carousel';
 @import '~ngx-owl-carousel-o/lib/styles/scss/owl.theme.default';
 @import '~bootstrap/scss/bootstrap';
-@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
-@import '~perfect-scrollbar/css/perfect-scrollbar.css';
 @import 'assets/icons/style.css';
+
+@import '~@angular/material/theming';
+@include mat-core();
+$a7m-app-primary: mat-palette($mat-blue);
+$a7m-app-accent:  mat-palette($mat-indigo, A200, A100, A400);
+$a7m-app-warn:    mat-palette($mat-red);
+$a7m-app-theme: mat-light-theme($a7m-app-primary, $a7m-app-accent, $a7m-app-warn);
+@include angular-material-theme($a7m-app-theme);
 
 * {
   outline: none !important;

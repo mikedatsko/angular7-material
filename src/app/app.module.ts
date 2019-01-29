@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 import {
   MatMenuModule,
   MatButtonModule,
@@ -11,26 +12,32 @@ import {
   MatListModule,
   MatFormFieldModule,
   MatInputModule,
-  MatCheckboxModule
+  MatCheckboxModule,
+  MatProgressSpinnerModule
 } from '@angular/material';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { NgScrollbarModule } from 'ngx-scrollbar';
-// import { PerfectScrollbarModule, PERFECT_SCROLLBAR_CONFIG, PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {
   CarouselComponent,
+  CartComponent,
+  CategoriesComponent,
+  CategoryComponent,
   CheckoutComponent,
   FooterComponent,
   FormGetStartedComponent,
   HomeComponent,
-  NavbarComponent
+  NavbarComponent,
+  PreloaderComponent,
+  ProductComponent,
+  ProductsComponent,
+  ScrollbarComponent,
+  SearchProductsComponent
 } from './components';
 
-// const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
-//   suppressScrollX: true
-// };
+import { ApiService } from './services';
 
 @NgModule({
   imports: [
@@ -38,6 +45,7 @@ import {
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
+    HttpClientModule,
     AppRoutingModule,
     MatButtonModule,
     MatIconModule,
@@ -48,24 +56,29 @@ import {
     MatFormFieldModule,
     MatInputModule,
     MatCheckboxModule,
+    MatProgressSpinnerModule,
     CarouselModule,
     NgScrollbarModule
   ],
   declarations: [
     AppComponent,
+
     CarouselComponent,
+    CartComponent,
+    CategoriesComponent,
+    CategoryComponent,
     CheckoutComponent,
     FooterComponent,
     FormGetStartedComponent,
     HomeComponent,
-    NavbarComponent
+    NavbarComponent,
+    PreloaderComponent,
+    ProductComponent,
+    ProductsComponent,
+    ScrollbarComponent,
+    SearchProductsComponent
   ],
-  providers: [
-    // {
-    //   provide: PERFECT_SCROLLBAR_CONFIG,
-    //   useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG
-    // }
-  ],
+  providers: [ApiService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

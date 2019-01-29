@@ -2,61 +2,21 @@
   <h1>Checkout</h1>
 
   <div class="row checkout">
-    <div #tilesRef class="col-md-8">
-      <div #categoriesRef class="categories-list">
-        <div
-          *ngFor="let category of categoriesList"
-          (click)="selectCategory(category.id)"
-          [class.active]="category.id === selectedCategory"
-          class="category"
-        >
-          <div class="category-icon">
-            <mat-icon [style.color]="category.color || 'black'">{{category.icon}}</mat-icon>
-          </div>
-          <div class="category-title" [innerText]="category.title"></div>
-        </div>
-      </div>
+    <div #productsRef class="col-md-8">
+      <app-categories
+        (getCategoriesAction)="onGetCategories($event)"
+        (selectCategoryAction)="onSelectCategory($event)"
+      >
+      </app-categories>
 
-      <div *ngIf="isShowNavCategoriesScrollbar" class="nav-scrollbar">
-        <div class="nav-scrollbar-left" (click)="scrollCategories('left')">
-          <mat-icon>keyboard_arrow_left</mat-icon>
-        </div>
-        <div class="nav-scrollbar-right" (click)="scrollCategories('right')">
-          <mat-icon>keyboard_arrow_right</mat-icon>
-        </div>
-      </div>
+      <app-search-products
+        [isShowCart]="isShowCart"
+        [selectedTilesNum]="selectedTiles.length"
+        (searchAction)="onSearch($event)"
+      >
+      </app-search-products>
 
-      <mat-form-field class="search-bar">
-        <input matInput placeholder="Search" type="text" name="search" (input)="onSearch($event)">
-        <span matPrefix>
-          <mat-icon>search</mat-icon>
-        </span>
-        <span (click)="isShowCart = !isShowCart" matSuffix class="cart-button">
-          <mat-icon>shopping_basket</mat-icon>
-          <span *ngIf="selectedTiles.length" [innerText]="selectedTiles.length" class="cart-selected-tiles"></span>
-        </span>
-      </mat-form-field>
-
-      <div class="nav-scrollbar" [style.visibility]="isShowNavTilesScrollbar ? 'visible' : 'hidden'">
-        <div class="nav-scrollbar-left" (click)="scrollTiles('left')">
-          <mat-icon>keyboard_arrow_left</mat-icon>
-        </div>
-
-        <div
-          *ngFor="let page of filteredTilesPages; let pageIndex = index"
-          [innerText]="page"
-          (click)="setTilesPage(pageIndex)"
-          [class.active]="pageIndex === filteredTilesPage"
-          class="nav-scrollbar-page"
-        >
-        </div>
-
-        <div class="nav-scrollbar-right" (click)="scrollTiles('right')">
-          <mat-icon>keyboard_arrow_right</mat-icon>
-        </div>
-      </div>
-
-      <div class="tiles-list" [style.height.px]="tileSize * 2" [style.width.px]="tileSize * tileColumns">
+      <div class="tiles-list" [style.height.px]="tileSize * 3" [style.width.px]="tileSize * tileColumns">
         <div
           *ngFor="let tile of filteredTiles"
           [style.width.px]="tileSize - 2"
@@ -69,23 +29,21 @@
           <img class="tile-image" [attr.src]="tile.imagePath" alt="">
         </div>
       </div>
+
+      <!--<app-scrollbar-->
+        <!--[selectedPage]="productsPage"-->
+        <!--[pages]="productsPages"-->
+        <!--(changePageAction)="onChangePage($event)"-->
+      <!--&gt;-->
+      <!--</app-scrollbar>-->
     </div>
     <div class="col-md-4 cart" [class.show]="isShowCart" [class.empty]="!selectedTiles.length">
-      <mat-icon (click)="isShowCart = false">close</mat-icon>
-
-      <div [innerText]="getSelectedSum() | currency" class="sum"></div>
-
-      <ng-scrollbar *ngIf="selectedTiles.length" class="selected-tiles-list">
-        <div *ngFor="let tile of selectedTiles" class="selected-tile">
-          <div class="selected-tile-title" [innerText]="tile.title"></div>
-          <div class="selected-tile-price" [innerText]="tile.price | currency"></div>
-          <div class="selected-tile-image">
-            <img [attr.src]="tile.imagePath" alt="">
-          </div>
-        </div>
-      </ng-scrollbar>
-
-      <span *ngIf="!selectedTiles.length" class="text-secondary">Empty</span>
+      <app-cart
+        [isShowCart]="isShowCart"
+        [selectedTiles]="selectedTiles"
+        (closeCartAction)="onCloseCart($event)"
+      >
+      </app-cart>
     </div>
   </div>
 </div>

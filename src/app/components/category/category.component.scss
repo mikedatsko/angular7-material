@@ -1,0 +1,45 @@
+:host {
+  display: inline-flex;
+
+  .category {
+    display: flex;
+    width: 80px;
+    flex-shrink: 0;
+    flex-direction: column;
+    padding-bottom: 12px;
+    margin-bottom: 15px;
+    cursor: pointer;
+    align-items: center;
+
+    &:hover {
+      background: rgba(0, 0, 0, 0.02);
+      border-radius: 4px;
+    }
+
+    &.active {
+      background: rgba(0, 0, 0, 0.05);
+      border-radius: 4px;
+      box-shadow: inset 0 2px 2px rgba(0,0,0,0.3);
+    }
+
+    .category-icon {
+      display: flex;
+      width: 80px;
+      height: 80px;
+      align-items: center;
+      justify-content: center;
+
+      /deep/ .mat-icon {
+        font-size: 50px;
+        width: 50px;
+        height: 50px;
+      }
+    }
+
+    .category-title {
+      text-align: center;
+      font-size: 12px;
+      padding: 0 5px;
+    }
+  }
+}

@@ -1,0 +1,19 @@
+<div #categoriesRef class="categories-list">
+  <app-preloader *ngIf="isLoading"></app-preloader>
+
+  <app-category
+    *ngFor="let category of categories"
+    [category]="category"
+    [selectedCategory]="selectedCategory"
+    [categoryWidth]="categoryWidth"
+    (click)="selectCategory(category.id)"
+  >
+  </app-category>
+</div>
+
+<app-scrollbar
+  [selectedPage]="categoriesPage"
+  [pages]="categoriesPages"
+  (changePageAction)="onChangePage($event)"
+>
+</app-scrollbar>

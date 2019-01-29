@@ -1,0 +1,15 @@
+<mat-icon (click)="closeCart()">close</mat-icon>
+
+<div [innerText]="getSelectedSum() | currency" class="sum"></div>
+
+<ng-scrollbar *ngIf="selectedTiles.length" class="selected-tiles-list">
+  <div *ngFor="let tile of selectedTiles" class="selected-tile">
+    <div class="selected-tile-title" [innerText]="tile.title"></div>
+    <div class="selected-tile-price" [innerText]="tile.price | currency"></div>
+    <div class="selected-tile-image">
+      <img [attr.src]="tile.imagePath" alt="">
+    </div>
+  </div>
+</ng-scrollbar>
+
+<div *ngIf="!selectedTiles.length" class="text-secondary text-center">Empty</div>

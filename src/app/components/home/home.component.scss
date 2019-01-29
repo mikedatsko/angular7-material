@@ -1,7 +1,7 @@
 :host {
   .shopping {
-    background: transparent url(https://ddnh378lrqdgf.cloudfront.net/static/images/new/patterns/blue.png) 0 0 repeat;
     background-size: 207px;
+    background-color: #25b9c6;
 
     .container {
       max-width: 800px;
@@ -13,7 +13,7 @@
         display: flex;
         align-items: flex-start;
         justify-content: center;
-        height: 719px;
+        height: 600px;
         padding: 0;
         flex-direction: column;
         min-width: 320px;
@@ -31,7 +31,7 @@
         /deep/ .mat-list {
           .mat-list-item {
             color: #fff;
-            font-size: 24px;
+            font-size: 20px;
             font-weight: 300;
 
             .mat-list-item-content {
@@ -47,7 +47,8 @@
       }
 
       .shopping-image {
-        width: 624px;
+        width: 500px;
+        height: 100%;
       }
     }
   }

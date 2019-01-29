@@ -28,11 +28,16 @@
 
             .logo {
               margin-top: 3px;
-              margin-left: 1px;
+              text-decoration: none;
+              color: #25b9c6 !important;
+              font-weight: 900;
+              font-size: 30px;
 
-              svg {
-                transition: width 0.2s ease-in-out;
-                width: 167px;
+              .subscript{
+                color: #25b9c6 !important;
+                font-size: 12px;
+                display: block;
+                margin-top: -10px;
               }
             }
           }
@@ -108,7 +113,7 @@
               &.login {
                 border: 1px solid;
                 border-radius: 24px;
-                color: #333;
+                color: turquoise;
                 padding: 0px 24px;
                 font-size: 16px;
                 font-weight: 300;
@@ -117,9 +122,9 @@
                 margin-top: -1px;
 
                 &:hover {
-                  border-color: #A358DF;
+                  border-color: turquoise;
                   background-color: transparent;
-                  color: #A358DF;
+                  color: turquoise;
                 }
               }
             }

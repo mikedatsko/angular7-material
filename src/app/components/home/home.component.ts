@@ -9,56 +9,60 @@ export class HomeComponent implements OnInit {
   carouselSlides: any[] = [
     {
       id: '1',
-      title: 'The #1 most used Android shopping list app is now available free for iOS',
-      titleTab: 'Screen 1',
-      description: 'Start creating and sharing shopping lists with friends and family.',
-      action: () => alert('Hello'),
+      title: 'The #1 grocery app based on AI and Machine learning',
+      titleTab: 'Get Hiber',
+      description: 'Start ordering grocery in 1-Click',
+      action: () => alert('App developement in progress. Stay stuned'),
       buttonTitle: 'Download',
-      imagePath: 'https://ddnh378lrqdgf.cloudfront.net/static/images/new/slides/image_1.png',
-      bgImagePath: 'https://ddnh378lrqdgf.cloudfront.net/static/images/new/slides/background_1.jpg'
+      imagePath: '/assets/home/carousel/image_1.png',
+      bgImagePath: '/assets/home/carousel/carousel_1.jpg'
     },
     {
       id: '2',
-      title: 'UniverSL',
-      titleTab: 'Screen 2',
-      description: 'Browse and save our list ideas directly to your Out of Milk account. Join our network of recipe bloggers to make your recipes interactive, and keep your fans engaged.',
-      action: () => alert('Hello'),
-      buttonTitle: 'Sign up',
-      imagePath: 'https://ddnh378lrqdgf.cloudfront.net/static/images/new/slides/image_2.png',
-      bgImagePath: 'https://ddnh378lrqdgf.cloudfront.net/static/images/new/slides/background_2.jpg'
+      title: 'Hiber helps you save time',
+      titleTab: 'Save Time',
+      description: 'Automatic basket creation with no product navigation',
+      action: () => alert('App developement in progress. Stay stuned'),
+      buttonTitle: 'Try now',
+      imagePath: '/assets/home/carousel/image_2.png',
+      bgImagePath: '/assets/home/carousel/carousel_2.jpg'
     },
     {
       id: '3',
-      title: 'The Out of Milk Web App',
-      titleTab: 'Screen 3',
-      description: 'Sign in to create & share shopping lists!',
-      action: () => alert('Hello'),
-      buttonTitle: 'Sign up',
-      imagePath: 'https://ddnh378lrqdgf.cloudfront.net/static/images/new/slides/image_3.png',
-      bgImagePath: 'https://ddnh378lrqdgf.cloudfront.net/static/images/new/slides/background_3.jpg'
+      title: 'Hiber basket is 4% cheaper',
+      titleTab: 'Save Money',
+      description: 'Hiber seemlessly creates the optimized basket',
+      action: () => alert('App developement in progress. Stay stuned'),
+      buttonTitle: 'Try now',
+      imagePath: '/assets/home/carousel/image_3.png',
+      bgImagePath: '/assets/home/carousel/carousel_3.jpg'
     },
     {
       id: '4',
-      title: 'Title',
-      titleTab: 'Screen 4',
-      description: 'Lorem ipsum',
-      action: () => alert('Hello'),
-      buttonTitle: 'Sign up',
-      imagePath: 'https://ddnh378lrqdgf.cloudfront.net/static/images/new/slides/image_4.png',
-      bgImagePath: 'https://ddnh378lrqdgf.cloudfront.net/static/images/new/slides/background_4.jpg'
+      title: 'Auto-Redeem of coupons and vouchers',
+      titleTab: 'Save Effort',
+      description: 'Helps you further reduce your daily basket price',
+      action: () => alert('App developement in progress. Stay stuned'),
+      buttonTitle: 'Try now',
+      imagePath: '/assets/home/carousel/image_4.png',
+      bgImagePath: '/assets/home/carousel/carousel_4.jpg'
     }
   ];
   shoppingList: any[] = [
     {
-      title: 'Share Your List',
+      title: 'Recurring ordering',
       icon: 'home'
     },
     {
-      title: 'Add From History',
+      title: 'Home delivery',
       icon: 'home'
     },
     {
-      title: 'Barcode Scanner',
+      title: 'Pick up from hiber mobile store',
+      icon: 'home'
+    },
+    {
+      title: 'Near trusted supermarkets',
       icon: 'home'
     }
   ];

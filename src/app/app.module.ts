@@ -25,7 +25,8 @@ import {
   FooterComponent,
   FormGetStartedComponent,
   HomeComponent,
-  NavbarComponent
+  NavbarComponent,
+  FeedbackComponent
 } from './components';
 
 // import ngx-translate and the http loader
@@ -67,13 +68,10 @@ import {TranslateHttpLoader} from '@ngx-translate/http-loader';
     FooterComponent,
     FormGetStartedComponent,
     HomeComponent,
-    NavbarComponent
+    NavbarComponent,
+    FeedbackComponent
   ],
   providers: [
-    // {
-    //   provide: PERFECT_SCROLLBAR_CONFIG,
-    //   useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG
-    // }
   ],
   bootstrap: [AppComponent]
 })

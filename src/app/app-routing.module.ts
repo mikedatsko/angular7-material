@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { CheckoutComponent, HomeComponent } from './components';
+import { CheckoutComponent, HomeComponent, FeedbackComponent } from './components';
 
 const routes: Routes = [
   {
@@ -15,6 +15,10 @@ const routes: Routes = [
   {
     path: 'checkout',
     component: CheckoutComponent
+  },
+  {
+    path: 'feedback',
+    component: FeedbackComponent
   },
   {
     path: '**',

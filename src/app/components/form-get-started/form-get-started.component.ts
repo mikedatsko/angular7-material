@@ -18,17 +18,17 @@ export class FormGetStartedComponent implements OnInit {
       return;
     }
 
-    form.controls.email.setErrors(null);
-    const email = form.controls.email.value;
+    form.controls.zipcode.setErrors(null);
+    const zipcode = form.controls.zipcode.value;
 
-    if (!email) {
-      form.controls.email.setErrors({
+    if (!zipcode) {
+      form.controls.zipcode.setErrors({
         required: true
       });
       return;
     }
 
     form.reset();
-    this.router.navigate(['/checkout', {email}]);
+    this.router.navigate(['/checkout', {zipcode}]);
   }
 }

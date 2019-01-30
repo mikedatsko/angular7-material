@@ -1,18 +1,13 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, Input } from '@angular/core';
+import { AppModuleTest } from '../../mocks/app.module.test';
 import { HomeComponent } from './home.component';
-
-@Component({selector: 'app-carousel', template: ``}) class CarouselComponent { @Input() options: any[]; @Input() slides: any[]; }
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
   let fixture: ComponentFixture<HomeComponent>;
 
   beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ HomeComponent ]
-    })
-    .compileComponents();
+    TestBed.configureTestingModule(AppModuleTest('HomeComponent', HomeComponent)).compileComponents();
   }));
 
   beforeEach(() => {

@@ -1,6 +1,8 @@
 <div
-  [class.active]="category.id === selectedCategory"
-  [style.width.px]="categoryWidth"
+  *ngIf="category"
+  [class.active]="category.id === selectedCategoryId"
+  [style.width.px]="categorySize"
+  [style.height.px]="categorySize"
   class="category"
 >
   <div class="category-icon">

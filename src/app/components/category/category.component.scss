@@ -12,6 +12,7 @@
     background-color: #25b9c6;
     border: 0.5px solid #ffffff;
     color: #ffffff;
+    position: relative;
 
     &:hover {
       background: #ffffff;
@@ -43,6 +44,11 @@
       text-align: center;
       font-size: 12px;
       padding: 0 5px;
+      position: absolute;
+      bottom: 7px;
+      display: flex;
+      height: 36px;
+      align-items: center;
     }
   }
 }

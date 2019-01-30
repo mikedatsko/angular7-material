@@ -1,28 +1,21 @@
-import { Component, OnInit, OnDestroy, AfterContentChecked, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { map } from 'rxjs/operators';
+import { Category, Product } from '../../interfaces';
 
 @Component({
   selector: 'app-checkout',
   templateUrl: './checkout.component.html',
   styleUrls: ['./checkout.component.scss']
 })
-export class CheckoutComponent implements OnInit, OnDestroy, AfterContentChecked {
-  @ViewChild('productsRef') productsRef: ElementRef;
+export class CheckoutComponent implements OnInit, OnDestroy {
   subs: any[] = [];
-  filteredTiles: any[] = [];
-  filteredTilesAll: any[] = [];
-  selectedTiles: any[] = [];
   categories: any[] = [];
-  selectedCategory: any;
+  products: any[] = [];
+  selectedCategory: Category;
+  selectedProducts: Product[] = [];
   search: string = '';
-  tileSize: number = 0;
-  filteredTilesPage: number = 0;
-  filteredTilesPages: number[] = [];
-  tilesPerPage: number = 18;
-  tileColumns: number = 6;
   isShowCart: boolean = false;
-  isShowNavTilesScrollbar: boolean = false;
 
   constructor(private route: ActivatedRoute) { }
 
@@ -31,30 +24,14 @@ export class CheckoutComponent implements OnInit, OnDestroy, AfterContentChecked
       .paramMap
       .pipe(map(params => params.get('email') || ''))
       .subscribe(email => console.log('email', email)));
-
-    this.filterTiles();
   }
 
   ngOnDestroy() {
     this.subs.forEach(sub => sub.unsubscribe());
   }
 
-  ngAfterContentChecked() {
-    this.checkTileSize();
-  }
-
-  checkTileSize() {
-    if (!this.productsRef || !this.productsRef.nativeElement) {
-      return;
-    }
-
-    const { clientWidth } = this.productsRef.nativeElement;
-    this.tileSize = (clientWidth - 30) / 6;
-  }
-
   onSearch(search) {
     this.search = search;
-    this.filterTiles();
   }
 
   onCloseCart(isShowCart) {
@@ -67,55 +44,10 @@ export class CheckoutComponent implements OnInit, OnDestroy, AfterContentChecked
 
   onSelectCategory(category) {
     this.selectedCategory = category;
-    this.filterTiles();
+    this.products = category.products;
   }
 
-  filterTiles() {
-    console.log('filterTiles', this.selectedCategory);
-
-    if (!this.selectedCategory) {
-      return;
-    }
-
-    const tiles = this.selectedCategory.products;
-
-    if (!this.search) {
-      this.filteredTilesAll = [...tiles];
-      this.setFilteredTiles();
-      return;
-    }
-
-    this.filteredTilesAll = tiles.filter(tile => tile.title.toLowerCase().search(this.search) > -1);
-    this.setFilteredTiles();
-  }
-
-  setFilteredTiles() {
-    this.filteredTilesPages = Array.from({length: Math.ceil(this.filteredTilesAll.length / this.tilesPerPage)}, (x, i) => i + 1);
-    this.filteredTilesPage = 0;
-    this.isShowNavTilesScrollbar = !!this.filteredTilesPages.length;
-    this.setTiles();
-  }
-
-  setTiles() {
-    this.filteredTiles = this.filteredTilesAll.slice(
-      this.filteredTilesPage * this.tilesPerPage,
-      this.filteredTilesPage * this.tilesPerPage + this.tilesPerPage
-    );
-    this.tileColumns = Math.ceil(this.filteredTiles.length / 3);
-  }
-
-  setTilesPage(page) {
-    this.filteredTilesPage = page;
-    this.setTiles();
-  }
-
-  toggleTile(tile) {
-    if (this.selectedTiles.find(tile_ => tile_.id === tile.id)) {
-      this.selectedTiles = this.selectedTiles.filter(tile_ => tile_.id !== tile.id);
-      tile.isSelected = false;
-    } else {
-      this.selectedTiles.push(tile);
-      tile.isSelected = true;
-    }
+  onSelectProduct(products) {
+    this.selectedProducts = products;
   }
 }

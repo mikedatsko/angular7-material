@@ -1,3 +1,11 @@
-<p>
-  product works!
-</p>
+<div
+  *ngIf="product"
+  [style.width.px]="productSize - 2"
+  [style.height.px]="productSize - 2"
+  class="product"
+>
+  <span class="product-title" [innerText]="product.title"></span>
+  <mat-checkbox class="product-checkbox" [checked]="product.isSelected"></mat-checkbox>
+  <span class="product-selector" (click)="clickProduct(product)"></span>
+  <img class="product-image" [attr.src]="product.imagePath" alt="">
+</div>

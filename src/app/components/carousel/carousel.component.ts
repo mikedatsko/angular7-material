@@ -38,7 +38,6 @@ export class CarouselComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    console.log('ngOnInit', this.slides);
     this.carouselOptions = {...this.defaultOptions, ...this.options};
   }
 }

@@ -1,3 +1,19 @@
-<p>
-  products works!
-</p>
+<div #productsRef>
+  <div class="products-list" [style.height.px]="productSize * 3" [style.width.px]="productSize * productsColumnsPerPage">
+    <app-product
+      *ngFor="let product of products"
+      [product]="product"
+      [productSize]="productSize"
+      (clickProductAction)="toggleProduct($event)"
+    >
+    </app-product>
+  </div>
+</div>
+
+<app-pagination
+  [isShow]="pages.length > 1"
+  [selectedPage]="page"
+  [pages]="pages"
+  (changePageAction)="onChangePage($event)"
+>
+</app-pagination>

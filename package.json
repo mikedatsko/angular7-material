@@ -5,11 +5,15 @@
     "ng": "ng",
     "start": "node server.js",
     "build": "ng build",
-    "build:prod": "ng build  --aot --prod",
+    "build-prod": "ng build --aot --prod",
+    "watch": "concurrently \"npm:watch-front\" \"npm:watch-server\"",
+    "watch-front": "ng build --watch",
+    "watch-server": "PORT=8080 nodemon server.js",
     "test": "ng test",
+    "test-coverage": "ng test --watch=false --code-coverage",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "postinstall": "npm run build:prod"
+    "postinstall": "npm run build-prod"
   },
   "engines": {
     "node": "~10.15.0",
@@ -52,6 +56,7 @@
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "~8.9.4",
     "codelyzer": "~4.5.0",
+    "concurrently": "^4.1.0",
     "jasmine-core": "~2.99.1",
     "jasmine-spec-reporter": "~4.2.1",
     "karma": "~3.1.1",
@@ -59,6 +64,7 @@
     "karma-coverage-istanbul-reporter": "~2.0.1",
     "karma-jasmine": "~1.1.2",
     "karma-jasmine-html-reporter": "^0.2.2",
+    "nodemon": "^1.18.9",
     "protractor": "~5.4.0",
     "ts-node": "~7.0.0",
     "tslint": "~5.11.0",

@@ -6,8 +6,40 @@
 
 @import '~@angular/material/theming';
 @include mat-core();
-$hiber-app-primary: mat-palette($mat-blue);
-$hiber-app-accent:  mat-palette($mat-indigo, A200, A100, A400);
+$md-primary: (
+  50 : #e5f7f8,
+  100 : #beeaee,
+  200 : #92dce3,
+  300 : #66ced7,
+  400 : #46c4cf,
+  500 : #25b9c6,
+  600 : #21b2c0,
+  700 : #1baab9,
+  800 : #16a2b1,
+  900 : #0d93a4,
+  A100 : #d3f9ff,
+  A200 : #a0f3ff,
+  A400 : #6decff,
+  A700 : #53e9ff,
+  contrast: (
+    50 : #000000,
+    100 : #000000,
+    200 : #000000,
+    300 : #000000,
+    400 : #000000,
+    500 : #000000,
+    600 : #000000,
+    700 : #000000,
+    800 : #ffffff,
+    900 : #ffffff,
+    A100 : #000000,
+    A200 : #000000,
+    A400 : #000000,
+    A700 : #000000,
+  )
+);
+$hiber-app-primary: mat-palette($md-primary);
+$hiber-app-accent:  mat-palette($md-primary);
 $hiber-app-warn:    mat-palette($mat-red);
 $hiber-app-theme:   mat-light-theme($hiber-app-primary, $hiber-app-accent, $hiber-app-warn);
 @include angular-material-theme($hiber-app-theme);
@@ -44,8 +76,8 @@ h1 {
 ng-scrollbar {
   --scrollbar-color: #eee !important;
   --scrollbar-container-color: transparent !important;
-  --scrollbar-thumb-color: #ff8f44 !important;
-  --scrollbar-thumb-hover-color: #ff5114 !important;
+  --scrollbar-thumb-color: #25b9c6 !important;
+  --scrollbar-thumb-hover-color: #16a2b1 !important;
   --scrollbar-border-radius: 2px !important;
   --scrollbar-size: 10px !important;
   --scrollbar-padding: 0px !important;

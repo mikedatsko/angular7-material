@@ -45,14 +45,12 @@
 
       &.mat-focused {
         .mat-form-field-wrapper {
-          border-color: #00a9ff;
           background-color: #fff;
 
           .mat-form-field-label-wrapper {
             overflow: initial;
 
             .mat-form-field-label {
-              color: #00a9ff;
               transform: translateY(-2.2rem) translateZ(0.001px) perspective(100px) scale(0.75);
             }
           }

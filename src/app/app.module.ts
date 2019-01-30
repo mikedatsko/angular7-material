@@ -37,10 +37,10 @@ import {
   FormGetStartedComponent,
   HomeComponent,
   NavbarComponent,
+  PaginationComponent,
   PreloaderComponent,
   ProductComponent,
   ProductsComponent,
-  ScrollbarComponent,
   SearchProductsComponent
 } from './components';
 
@@ -88,10 +88,10 @@ import { ApiService } from './services';
     FormGetStartedComponent,
     HomeComponent,
     NavbarComponent,
+    PaginationComponent,
     PreloaderComponent,
     ProductComponent,
     ProductsComponent,
-    ScrollbarComponent,
     SearchProductsComponent
   ],
   providers: [ApiService],

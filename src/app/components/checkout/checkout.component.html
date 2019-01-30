@@ -1,44 +1,31 @@
 <div class="container">
   <div class="row checkout">
-    <div #productsRef class="col-md-8">
+    <div class="col-md-8">
+      <app-search-products
+        [isShowCart]="isShowCart"
+        [selectedProductsNum]="selectedProducts.length"
+        (searchAction)="onSearch($event)"
+      >
+      </app-search-products>
+
       <app-categories
+        [search]="search"
         (getCategoriesAction)="onGetCategories($event)"
         (selectCategoryAction)="onSelectCategory($event)"
       >
       </app-categories>
 
-      <app-search-products
-        [isShowCart]="isShowCart"
-        [selectedTilesNum]="selectedTiles.length"
-        (searchAction)="onSearch($event)"
+      <app-products
+        [productsAll]="products"
+        [search]="search"
+        (selectProductAction)="onSelectProduct($event)"
       >
-      </app-search-products>
-
-      <div class="tiles-list" [style.height.px]="tileSize * 3" [style.width.px]="tileSize * tileColumns">
-        <div
-          *ngFor="let tile of filteredTiles"
-          [style.width.px]="tileSize - 2"
-          [style.height.px]="tileSize - 2"
-          class="tile"
-        >
-          <span class="tile-title" [innerText]="tile.title"></span>
-          <mat-checkbox class="tile-checkbox" [checked]="tile.isSelected"></mat-checkbox>
-          <span class="tile-selector" (click)="toggleTile(tile)"></span>
-          <img class="tile-image" [attr.src]="tile.imagePath" alt="">
-        </div>
-      </div>
-
-      <!--<app-scrollbar-->
-        <!--[selectedPage]="productsPage"-->
-        <!--[pages]="productsPages"-->
-        <!--(changePageAction)="onChangePage($event)"-->
-      <!--&gt;-->
-      <!--</app-scrollbar>-->
+      </app-products>
     </div>
-    <div class="col-md-4 cart" [class.show]="isShowCart" [class.empty]="!selectedTiles.length">
+    <div class="col-md-4 cart" [class.show]="isShowCart" [class.empty]="!selectedProducts.length">
       <app-cart
         [isShowCart]="isShowCart"
-        [selectedTiles]="selectedTiles"
+        [selectedTiles]="selectedProducts"
         (closeCartAction)="onCloseCart($event)"
       >
       </app-cart>

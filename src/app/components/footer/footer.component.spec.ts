@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { AppModuleTest } from '../../mocks/app.module.test';
 import { FooterComponent } from './footer.component';
 
 describe('FooterComponent', () => {
@@ -7,10 +7,7 @@ describe('FooterComponent', () => {
   let fixture: ComponentFixture<FooterComponent>;
 
   beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ FooterComponent ]
-    })
-    .compileComponents();
+    TestBed.configureTestingModule(AppModuleTest('FooterComponent', FooterComponent)).compileComponents();
   }));
 
   beforeEach(() => {

@@ -1,7 +1,7 @@
 export default [
   {
     id: '01',
-    title: 'Lorem Ipsum 1',
+    title: 'Lorem Ipsum One',
     icon: 'home',
     products: [
       {id: '001', title: 'One', price: 1, imagePath: 'https://dummyimage.com/250'},
@@ -30,7 +30,7 @@ export default [
   },
   {
     id: '02',
-    title: 'Lorem Ipsum 2',
+    title: 'Lorem Ipsum Two',
     icon: 'search',
     products: [
       {id: '102', title: 'Two', price: 2, imagePath: 'https://dummyimage.com/250'},
@@ -41,7 +41,7 @@ export default [
   },
   {
     id: '03',
-    title: 'Lorem Ipsum 3',
+    title: 'Lorem Ipsum Three',
     icon: 'remove',
     products: [
       {id: '201', title: 'One', price: 1, imagePath: 'https://dummyimage.com/250'},
@@ -56,68 +56,68 @@ export default [
   },
   {
     id: '04',
-    title: 'Lorem Ipsum 4',
+    title: 'Lorem Ipsum Four',
     icon: 'people',
     products: []
   },
   {
     id: '05',
-    title: 'Lorem Ipsum 5',
+    title: 'Lorem Ipsum Five',
     icon: 'add',
     products: []
   },
   {
     id: '06',
-    title: 'Lorem Ipsum 6',
+    title: 'Lorem Ipsum Six',
     icon: 'home',
     products: []
   },
   {
     id: '07',
-    title: 'Lorem Ipsum 7',
+    title: 'Lorem Ipsum Seven',
     icon: 'home',
     products: []
   },
   {
     id: '08',
-    title: 'Lorem Ipsum 8',
+    title: 'Lorem Ipsum Eight',
     icon: 'home',
     products: []
   },
   {
     id: '09',
-    title: 'Lorem Ipsum 9',
+    title: 'Lorem Ipsum Nine',
     icon: 'home',
     products: []
   },
   {
     id: '10',
-    title: 'Lorem Ipsum 10',
+    title: 'Lorem Ipsum Ten',
     icon: 'home',
     products: []
   },
   {
     id: '11',
-    title: 'Lorem Ipsum 11',
+    title: 'Lorem Ipsum Eleven',
     icon: 'home',
     products: []
   },
   {
     id: '12',
-    title: 'Lorem Ipsum 12',
+    title: 'Lorem Ipsum Twelve',
     icon: 'home',
     products: []
   },
   {
     id: '13',
-    title: 'Lorem Ipsum 13',
+    title: 'Lorem Ipsum Thirteen',
     icon: 'home',
     color: 'blue',
     products: []
   },
   {
     id: '14',
-    title: 'Lorem Ipsum 14',
+    title: 'Lorem Ipsum Fourteen',
     icon: 'home',
     products: []
   }

@@ -1,4 +1,5 @@
 <div
+  *ngIf="category"
   [class.active]="category.id === selectedCategoryId"
   [style.width.px]="categorySize"
   [style.height.px]="categorySize"

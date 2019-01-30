@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { AppModuleTest } from '../../mocks/app.module.test';
 import { ProductComponent } from './product.component';
 
 describe('ProductComponent', () => {
@@ -7,10 +7,7 @@ describe('ProductComponent', () => {
   let fixture: ComponentFixture<ProductComponent>;
 
   beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ ProductComponent ]
-    })
-    .compileComponents();
+    TestBed.configureTestingModule(AppModuleTest('ProductComponent', ProductComponent)).compileComponents();
   }));
 
   beforeEach(() => {

@@ -10,6 +10,7 @@
     "watch-front": "ng build --watch",
     "watch-server": "PORT=8080 nodemon server.js",
     "test": "ng test",
+    "test-coverage": "ng test --watch=false --code-coverage",
     "lint": "ng lint",
     "e2e": "ng e2e",
     "postinstall": "npm run build-prod"

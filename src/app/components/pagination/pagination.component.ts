@@ -1,4 +1,6 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { PaginationPage } from '../../interfaces';
+
 
 @Component({
   selector: 'app-pagination',
@@ -7,7 +9,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 })
 export class PaginationComponent implements OnInit {
   @Input() isShow: boolean = true;
-  @Input() pages: number[] = [];
+  @Input() pages: PaginationPage[] = [];
   @Input() selectedPage: number = 0;
   @Output() changePageAction: EventEmitter<number> = new EventEmitter<number>();
 

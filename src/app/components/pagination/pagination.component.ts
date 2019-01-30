@@ -1,12 +1,12 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 
 @Component({
-  selector: 'app-scrollbar',
-  templateUrl: './scrollbar.component.html',
-  styleUrls: ['./scrollbar.component.scss']
+  selector: 'app-pagination',
+  templateUrl: './pagination.component.html',
+  styleUrls: ['./pagination.component.scss']
 })
-export class ScrollbarComponent implements OnInit {
-  @Input() isShowNavScrollbar: boolean = true;
+export class PaginationComponent implements OnInit {
+  @Input() isShow: boolean = true;
   @Input() pages: number[] = [];
   @Input() selectedPage: number = 0;
   @Output() changePageAction: EventEmitter<number> = new EventEmitter<number>();
@@ -20,7 +20,7 @@ export class ScrollbarComponent implements OnInit {
     let page = 0;
 
     if (direction === 'left') {
-      const selectedPage = this.pages.includes(this.selectedPage)
+      const selectedPage = this.pages[this.selectedPage - 1]
         ? this.selectedPage - 1
         : this.selectedPage;
 
@@ -32,7 +32,7 @@ export class ScrollbarComponent implements OnInit {
     }
 
     if (direction === 'right') {
-      const selectedPage = this.pages.includes(this.selectedPage + 2)
+      const selectedPage = this.pages[this.selectedPage + 1]
         ? this.selectedPage + 1
         : this.selectedPage;
 

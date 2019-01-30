@@ -7,8 +7,8 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class CategoryComponent implements OnInit {
   @Input() category: any;
-  @Input() selectedCategory: string = '';
-  @Input() categoryWidth: number = 0;
+  @Input() selectedCategoryId: string = '';
+  @Input() categorySize: number = 0;
 
   constructor() { }
 

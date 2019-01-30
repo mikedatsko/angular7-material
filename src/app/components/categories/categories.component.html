@@ -4,16 +4,17 @@
   <app-category
     *ngFor="let category of categories"
     [category]="category"
-    [selectedCategory]="selectedCategory"
-    [categoryWidth]="categoryWidth"
+    [selectedCategoryId]="selectedCategoryId"
+    [categorySize]="categorySize"
     (click)="selectCategory(category.id)"
   >
   </app-category>
 </div>
 
-<app-scrollbar
-  [selectedPage]="categoriesPage"
-  [pages]="categoriesPages"
+<app-pagination
+  [isShow]="pages.length > 1"
+  [selectedPage]="page"
+  [pages]="pages"
   (changePageAction)="onChangePage($event)"
 >
-</app-scrollbar>
+</app-pagination>

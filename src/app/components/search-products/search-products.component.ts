@@ -7,7 +7,7 @@ import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 })
 export class SearchProductsComponent implements OnInit {
   @Input() isShowCart: boolean = false;
-  @Input() selectedTilesNum: number = 0;
+  @Input() selectedProductsNum: number = 0;
   @Output() searchAction: EventEmitter<string> = new EventEmitter<string>();
 
   constructor() { }

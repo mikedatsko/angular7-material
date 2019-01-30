@@ -1,0 +1,10 @@
+:host {
+  .products-list {
+    display: flex;
+    overflow: hidden;
+    scroll-behavior: smooth;
+    flex-direction: column;
+    flex-wrap: wrap;
+    height: 366px;
+  }
+}

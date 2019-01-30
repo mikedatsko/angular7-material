@@ -1,11 +1,11 @@
-<div class="nav-scrollbar" [style.visibility]="isShowNavScrollbar ? 'visible' : 'hidden'">
+<div class="nav-scrollbar" [style.visibility]="isShow ? 'visible' : 'hidden'">
   <div class="nav-scrollbar-left" (click)="scroll('left')">
     <mat-icon>keyboard_arrow_left</mat-icon>
   </div>
 
   <div
     *ngFor="let page of pages; let pageIndex = index"
-    [innerText]="page"
+    [innerText]="page.title"
     (click)="selectPage(pageIndex)"
     [class.active]="pageIndex === selectedPage"
     class="nav-scrollbar-page"

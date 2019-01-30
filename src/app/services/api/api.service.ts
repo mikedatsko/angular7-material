@@ -12,10 +12,11 @@ export class ApiService {
   get(path) {
     const httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type':  'application/json',
+        'Content-Type':  'application/x-www-form-urlencoded',
         'Authorization': `Basic ${btoa('admin:admin')}`
       })
     };
+    console.log('httpOptions', httpOptions);
     return this.http.get(`${this.host}/${path}`, httpOptions);
   }
 }

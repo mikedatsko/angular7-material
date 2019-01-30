@@ -1,30 +1,50 @@
-import { AfterContentChecked, Component, ElementRef, EventEmitter, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
+import {
+  AfterContentChecked,
+  Component,
+  ElementRef,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnDestroy,
+  OnInit,
+  Output,
+  ViewChild
+} from '@angular/core';
 import { ApiService } from '../../services';
 import { mocks } from '../../mocks';
+import { PaginationPage, Category } from '../../interfaces';
 
 @Component({
   selector: 'app-categories',
   templateUrl: './categories.component.html',
   styleUrls: ['./categories.component.scss']
 })
-export class CategoriesComponent implements OnInit, OnDestroy, AfterContentChecked {
-  @ViewChild('categoriesRef') categoriesRef: ElementRef;
+export class CategoriesComponent implements OnInit, OnChanges, OnDestroy, AfterContentChecked {
+  @Input() search: string = '';
   @Output() getCategoriesAction: EventEmitter<any[]> = new EventEmitter<any[]>();
-  @Output() selectCategoryAction: EventEmitter<string> = new EventEmitter<string>();
+  @Output() selectCategoryAction: EventEmitter<Category> = new EventEmitter<Category>();
+  @ViewChild('categoriesRef') categoriesRef: ElementRef;
   subs: any[] = [];
-  categoriesAll: any[] = [];
-  categories: any[] = [];
-  selectedCategory: string = '';
+  categories: Category[] = [];
+  categoriesAll: Category[] = [];
+  categoriesFiltered: Category[] = [];
+  selectedCategoryId: string = '';
   isLoading: boolean = true;
   categoriesPerPage: number = 6;
-  categoriesPages: number[] = [];
-  categoriesPage: number = 0;
-  categoryWidth: number = 0;
+  pages: PaginationPage[] = [];
+  page: number = 0;
+  categorySize: number = 0;
 
   constructor(private api: ApiService) { }
 
   ngOnInit() {
     this.getCategories();
+  }
+
+  ngOnChanges(changes) {
+    if (changes.hasOwnProperty('search')) {
+      this.filterCategories();
+    }
   }
 
   ngAfterContentChecked() {
@@ -44,8 +64,6 @@ export class CategoriesComponent implements OnInit, OnDestroy, AfterContentCheck
       this.categoriesAll = [...mocks.categoriesMock];
 
       if (this.categoriesAll.length) {
-        this.categoriesPages = Array.from({length: Math.ceil(this.categoriesAll.length / this.categoriesPerPage)}, (x, i) => i + 1);
-        this.categoriesPage = 0;
         this.selectCategory(this.categoriesAll[0].id);
         this.filterCategories();
       }
@@ -60,39 +78,50 @@ export class CategoriesComponent implements OnInit, OnDestroy, AfterContentCheck
     }
 
     const { clientWidth } = this.categoriesRef.nativeElement;
-    this.categoryWidth = clientWidth / this.categoriesPerPage;
+    this.categorySize = clientWidth / this.categoriesPerPage;
   }
 
   selectCategory(categoryId) {
-    const category = this.categoriesAll.find(category => category.id === categoryId);
+    const category = this.categoriesAll.find(category_ => category_.id === categoryId);
 
     if (!category) {
       return;
     }
 
-    this.selectedCategory = categoryId;
+    this.selectedCategoryId = categoryId;
     this.selectCategoryAction.emit(category);
   }
 
   onChangePage(page) {
-    this.categoriesPage = page;
-    this.filterCategories();
+    this.page = page;
+    this.setCategories();
   }
 
   filterCategories() {
-    if (!this.categoriesPages.length) {
+    if (!this.search) {
+      this.categoriesFiltered = [...this.categoriesAll];
+      this.setCategoriesPages();
       return;
     }
 
-    this.categories = this.categoriesAll.slice(
-      this.categoriesPage * this.categoriesPerPage,
-      this.categoriesPage * this.categoriesPerPage + this.categoriesPerPage
+    this.categoriesFiltered = this.categoriesAll.filter(category => category.title.toLowerCase().search(this.search) > -1);
+    this.setCategoriesPages();
+  }
+
+  setCategoriesPages() {
+    this.pages = Array.from(
+      {length: Math.ceil(this.categoriesFiltered.length / this.categoriesPerPage)},
+      (x, i) => ({title: (i + 1).toString()})
     );
+    this.page = 0;
+    this.setCategories();
+  }
 
-    if (!this.categories.length) {
-      return;
-    }
-
+  setCategories() {
+    this.categories = this.categoriesFiltered.slice(
+      this.page * this.categoriesPerPage,
+      this.page * this.categoriesPerPage + this.categoriesPerPage
+    );
     this.getCategoriesAction.emit(this.categories);
   }
 }

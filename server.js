@@ -6,6 +6,7 @@ const app = express();
 
 // Serve only the static files form the dist directory
 app.use(express.static(__dirname + '/dist/webapp'));
+app.get('/favicon.ico', (req, res) => res.status(204));
 
 app.get('*', function(req,res) {
   // Replace the '/dist/<to_your_project_name>/index.html'

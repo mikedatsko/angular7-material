@@ -1,10 +1,12 @@
-<div #productsRef>
+<app-preloader *ngIf="isLoading"></app-preloader>
+
+<div *ngIf="!isLoading" #productsRef (window:resize)="onWindowResize()">
   <div class="products-list" [style.height.px]="productSize * 3" [style.width.px]="productSize * productsColumnsPerPage">
     <app-product
       *ngFor="let product of products"
       [product]="product"
       [productSize]="productSize"
-      (clickProductAction)="toggleProduct($event)"
+      (quantityAction)="toggleProduct($event)"
     >
     </app-product>
   </div>

@@ -11,7 +11,6 @@ import {
   ViewChild
 } from '@angular/core';
 import { ApiService } from '../../services';
-import { mocks } from '../../mocks';
 import { PaginationPage, Category } from '../../interfaces';
 
 @Component({
@@ -56,12 +55,8 @@ export class CategoriesComponent implements OnInit, OnChanges, OnDestroy, AfterC
   }
 
   getCategories() {
-    this.subs.push(this.api.get('categories').subscribe(categories => {
-      console.log('categories', categories);
-    }));
-
-    setTimeout(() => {
-      this.categoriesAll = [...mocks.categoriesMock];
+    this.subs.push(this.api.get('categories').subscribe((response: any) => {
+      this.categoriesAll = [...response.content];
 
       if (this.categoriesAll.length) {
         this.selectCategory(this.categoriesAll[0].id);
@@ -69,7 +64,7 @@ export class CategoriesComponent implements OnInit, OnChanges, OnDestroy, AfterC
       }
 
       this.isLoading = false;
-    }, 1000);
+    }));
   }
 
   getCategoryWidth() {
@@ -78,7 +73,12 @@ export class CategoriesComponent implements OnInit, OnChanges, OnDestroy, AfterC
     }
 
     const { clientWidth } = this.categoriesRef.nativeElement;
-    this.categorySize = clientWidth / this.categoriesPerPage;
+    this.categoriesPerPage = clientWidth < 480
+      ? 3
+      : clientWidth < 600
+        ? 4
+        : 6;
+    this.categorySize = Math.floor(clientWidth / this.categoriesPerPage);
   }
 
   selectCategory(categoryId) {
@@ -97,6 +97,11 @@ export class CategoriesComponent implements OnInit, OnChanges, OnDestroy, AfterC
     this.setCategories();
   }
 
+  onWindowResize() {
+    this.getCategoryWidth();
+    this.filterCategories();
+  }
+
   filterCategories() {
     if (!this.search) {
       this.categoriesFiltered = [...this.categoriesAll];
@@ -104,7 +109,7 @@ export class CategoriesComponent implements OnInit, OnChanges, OnDestroy, AfterC
       return;
     }
 
-    this.categoriesFiltered = this.categoriesAll.filter(category => category.title.toLowerCase().search(this.search) > -1);
+    this.categoriesFiltered = this.categoriesAll.filter(category => category.categoryName.toLowerCase().search(this.search) > -1);
     this.setCategoriesPages();
   }
 

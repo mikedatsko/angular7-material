@@ -1,5 +1,5 @@
 <div class="nav-scrollbar" [style.visibility]="isShow ? 'visible' : 'hidden'">
-  <div class="nav-scrollbar-left" (click)="scroll('left')">
+  <div class="nav-scrollbar-left noselect" (click)="scroll('left')">
     <mat-icon>keyboard_arrow_left</mat-icon>
   </div>
 
@@ -8,11 +8,11 @@
     [innerText]="page.title"
     (click)="selectPage(pageIndex)"
     [class.active]="pageIndex === selectedPage"
-    class="nav-scrollbar-page"
+    class="nav-scrollbar-page noselect"
   >
   </div>
 
-  <div class="nav-scrollbar-right" (click)="scroll('right')">
+  <div class="nav-scrollbar-right noselect" (click)="scroll('right')">
     <mat-icon>keyboard_arrow_right</mat-icon>
   </div>
 </div>

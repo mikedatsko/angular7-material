@@ -24,6 +24,12 @@
       background: #ffffff;
       border: 0.5px solid #25b9c6;
       color: #25b9c6;
+
+      .category-icon {
+        img {
+          filter: invert(100%);
+        }
+      }
     }
 
     .category-icon {
@@ -33,10 +39,9 @@
       align-items: center;
       justify-content: center;
 
-      /deep/ .mat-icon {
-        font-size: 50px;
-        width: 50px;
-        height: 50px;
+      img {
+        max-width: 50px;
+        max-height: 50px;
       }
     }
 

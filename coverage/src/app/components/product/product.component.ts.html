@@ -20,31 +20,31 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">88.89% </span>
+        <span class="strong">60% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>8/9</span>
+        <span class='fraction'>12/20</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">100% </span>
+        <span class="strong">0% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>0/0</span>
+        <span class='fraction'>0/4</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">75% </span>
+        <span class="strong">42.86% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>3/4</span>
+        <span class='fraction'>3/7</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">87.5% </span>
+        <span class="strong">57.89% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>7/8</span>
+        <span class='fraction'>11/19</span>
       </div>
     </div>
     <p class="quiet">
       Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
     </p>
   </div>
-  <div class='status-line high'></div>
+  <div class='status-line medium'></div>
 <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -68,7 +68,24 @@
 <a name='L20'></a><a href='#L20'>20</a>
 <a name='L21'></a><a href='#L21'>21</a>
 <a name='L22'></a><a href='#L22'>22</a>
-<a name='L23'></a><a href='#L23'>23</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L23'></a><a href='#L23'>23</a>
+<a name='L24'></a><a href='#L24'>24</a>
+<a name='L25'></a><a href='#L25'>25</a>
+<a name='L26'></a><a href='#L26'>26</a>
+<a name='L27'></a><a href='#L27'>27</a>
+<a name='L28'></a><a href='#L28'>28</a>
+<a name='L29'></a><a href='#L29'>29</a>
+<a name='L30'></a><a href='#L30'>30</a>
+<a name='L31'></a><a href='#L31'>31</a>
+<a name='L32'></a><a href='#L32'>32</a>
+<a name='L33'></a><a href='#L33'>33</a>
+<a name='L34'></a><a href='#L34'>34</a>
+<a name='L35'></a><a href='#L35'>35</a>
+<a name='L36'></a><a href='#L36'>36</a>
+<a name='L37'></a><a href='#L37'>37</a>
+<a name='L38'></a><a href='#L38'>38</a>
+<a name='L39'></a><a href='#L39'>39</a>
+<a name='L40'></a><a href='#L40'>40</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -80,6 +97,7 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -88,10 +106,26 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {Product} from '../../interfaces';
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Product } from '../../interfaces';
 &nbsp;
 @Component({
   selector: 'app-product',
@@ -101,15 +135,32 @@ import {Product} from '../../interfaces';
 export class ProductComponent implements OnInit {
   @Input() product: Product;
   @Input() productSize: number;
-  @Output() clickProductAction: EventEmitter&lt;Product&gt; = new EventEmitter&lt;Product&gt;();
+  @Output() quantityAction: EventEmitter&lt;Product&gt; = new EventEmitter&lt;Product&gt;();
+  quantity: number = 0;
 &nbsp;
   constructor() { }
 &nbsp;
   ngOnInit() {
   }
 &nbsp;
-<span class="fstat-no" title="function not covered" >  clickProduct(</span>product) {
-<span class="cstat-no" title="statement not covered" >    this.clickProductAction.emit(product);</span>
+<span class="fstat-no" title="function not covered" >  onChangeQuantity(</span>$event) {
+    const { <span class="cstat-no" title="statement not covered" >value </span>} = $event.target;
+<span class="cstat-no" title="statement not covered" >    this.quantity = value ? parseInt(value, 10) : 0;</span>
+<span class="cstat-no" title="statement not covered" >    this.sendQuantityAction();</span>
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  addQuantity() {</span>
+<span class="cstat-no" title="statement not covered" >    this.quantity++;</span>
+<span class="cstat-no" title="statement not covered" >    this.sendQuantityAction();</span>
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  removeQuantity() {</span>
+<span class="cstat-no" title="statement not covered" >    this.quantity = this.quantity - 1 &lt; 0 ? 0 : this.quantity - 1;</span>
+<span class="cstat-no" title="statement not covered" >    this.sendQuantityAction();</span>
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  sendQuantityAction() {</span>
+<span class="cstat-no" title="statement not covered" >    this.quantityAction.emit({...this.product, quantity: this.quantity});</span>
   }
 }
 &nbsp;</pre></td></tr>
@@ -118,7 +169,7 @@ export class ProductComponent implements OnInit {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Wed Jan 30 2019 03:08:23 GMT+0200 (Eastern European Standard Time)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Thu Jan 31 2019 04:02:39 GMT+0200 (Eastern European Standard Time)
 </div>
 </div>
 <script src="../../../../prettify.js"></script>

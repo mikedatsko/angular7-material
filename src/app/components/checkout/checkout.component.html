@@ -4,28 +4,41 @@
       <app-search-products
         [isShowCart]="isShowCart"
         [selectedProductsNum]="selectedProducts.length"
-        (searchAction)="onSearch($event)"
+        (searchAction)="onSearchCategories($event)"
       >
       </app-search-products>
 
       <app-categories
-        [search]="search"
+        [search]="searchCategories"
         (getCategoriesAction)="onGetCategories($event)"
         (selectCategoryAction)="onSelectCategory($event)"
       >
       </app-categories>
 
+      <app-search-products
+        [isShowCart]="isShowCart"
+        [selectedProductsNum]="selectedProducts.length"
+        (searchAction)="onSearchProducts($event)"
+      >
+      </app-search-products>
+
+      <div (click)="isShowCart = !isShowCart" matSuffix class="cart-button">
+        <mat-icon>shopping_basket</mat-icon>
+        <span *ngIf="selectedProducts.length" [innerText]="selectedProducts.length" class="cart-selected-tiles"></span>
+      </div>
+
       <app-products
         [productsAll]="products"
-        [search]="search"
+        [search]="searchProducts"
+        [isLoading]="isLoadingProducts"
         (selectProductAction)="onSelectProduct($event)"
       >
       </app-products>
     </div>
     <div class="col-md-4 cart" [class.show]="isShowCart" [class.empty]="!selectedProducts.length">
       <app-cart
-        [isShowCart]="isShowCart"
-        [selectedTiles]="selectedProducts"
+        [isShow]="isShowCart"
+        [selectedProducts]="selectedProducts"
         (closeCartAction)="onCloseCart($event)"
       >
       </app-cart>

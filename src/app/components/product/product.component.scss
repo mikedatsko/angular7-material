@@ -3,7 +3,7 @@
     display: flex;
     width: 50px;
     height: 50px;
-    background: #ccc;
+    border: 1px solid #ccc;
     margin: 1px;
     align-items: center;
     justify-content: center;
@@ -12,11 +12,12 @@
 
     .product-title {
       position: absolute;
-      bottom: 7px;
-      background: rgba(0, 0, 0, 0.1);
-      color: #fff;
+      right: 10px;
+      top: 10px;
+      max-width: calc(100% - 40px);
       padding: 0 5px;
       font-size: 12px;
+      text-align: right;
     }
 
     .product-checkbox {
@@ -26,8 +27,9 @@
     }
 
     .product-image {
-      max-width: 100%;
-      max-height: 100%;
+      max-width: calc(100% - 40px);
+      max-height: calc(100% - 40px);
+      filter: invert(100%);
     }
 
     .product-selector {
@@ -38,6 +40,51 @@
       top: 0;
       z-index: 2;
       cursor: pointer;
+    }
+
+    .product-quantity {
+      display: flex;
+      width: 70px;
+      height: 24px;
+      background: rgba(255,255,255,0.8);
+      justify-content: space-between;
+      left: 50%;
+      transform: translateX(-50%);
+      position: absolute;
+      bottom: 8px;
+      z-index: 3;
+
+      /deep/ .mat-icon {
+        width: 24px;
+        height: 24px;
+        display: flex;
+        background: #a7e3e8;
+        font-size: 16px;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+      }
+
+      .mat-input-element {
+        width: 22px;
+        font-size: 12px;
+        text-align: center;
+      }
+    }
+  }
+
+  @media (max-width: 959px) {
+    .product {
+      .product-title {
+        right: 5px;
+        top: 5px;
+        max-width: calc(100% - 30px);
+      }
+
+      .product-checkbox {
+        top: 5px;
+        left: 5px;
+      }
     }
   }
 }

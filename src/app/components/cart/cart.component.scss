@@ -12,47 +12,80 @@
     padding-top: 5px;
   }
 
-  .selected-tiles-list {
+  ::ng-deep {
+    .mat-table {
+      width: calc(100% - 18px);
+
+      .product-image {
+        width: 50px;
+        padding: 0 !important;
+
+        img {
+          max-width: 40px;
+          max-height: 40px;
+          filter: invert(100%);
+        }
+      }
+
+      .product-title {
+        //display: flex;
+        //padding: 0;
+        //align-items: center;
+        //width: calc(100% - 120px);
+      }
+
+      .product-quantity {
+        width: 20px;
+        font-size: 14px;
+        text-align: right;
+      }
+
+      .product-x {
+        width: 20px;
+        font-size: 14px;
+        text-align: center;
+      }
+
+      .product-price {
+        width: 30px;
+        font-size: 14px;
+      }
+
+      .product-summary {
+        width: 30px;
+        font-size: 14px;
+        padding: 0 !important;
+        text-align: right;
+      }
+    }
+  }
+
+  .products-list {
     max-height: 560px;
 
-    .selected-tile {
+    .product {
       padding-bottom: 2px;
       margin-bottom: 2px;
       border-bottom: 1px solid #eee;
       display: flex;
       justify-content: space-between;
-      max-width: calc(100% - 18px);
-
-      .selected-tile-title {
-        display: flex;
-        padding: 0;
-        align-items: center;
-        width: calc(100% - 120px);
-      }
-
-      .selected-tile-price {
-        display: flex;
-        width: 70px;
-        justify-content: flex-end;
-        align-items: center;
-        padding-right: 10px;
-        font-size: 14px;
-      }
-
-      .selected-tile-image {
-        display: flex;
-        width: 50px;
-        height: 50px;
-
-        img {
-          max-width: 100%;
-          max-height: 100%;
-        }
-      }
 
       &:last-child {
-        border-bottom: 0;
+        //border-bottom: 0;
       }
+    }
+  }
+
+  @media (max-width: 767px) {
+    ::ng-deep {
+      .mat-table {
+        width: 100%;
+      }
+    }
+
+    .products-list {
+      max-height: calc(100vh - 75px);
+      overflow: auto;
     }
   }
 }

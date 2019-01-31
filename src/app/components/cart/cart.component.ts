@@ -6,9 +6,11 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
   styleUrls: ['./cart.component.scss']
 })
 export class CartComponent implements OnInit {
-  @Input() selectedTiles: any[] = [];
-  @Input() isShowCart: boolean = true;
+  @Input() selectedProducts: any[] = [];
+  @Input() isShow: boolean = true;
   @Output() closeCartAction: EventEmitter<boolean> = new EventEmitter<boolean>();
+  cartColumns: string[] = ['image', 'title', 'quantity', 'x', 'price', 'summary'];
+  search: string = '';
 
   constructor() { }
 
@@ -16,10 +18,14 @@ export class CartComponent implements OnInit {
   }
 
   getSelectedSum() {
-    return this.selectedTiles.reduce((a, b) => a += b.price, 0);
+    return this.selectedProducts.reduce((a, b) => a += b.price * b.quantity, 0);
   }
 
   closeCart() {
     this.closeCartAction.emit(false);
+  }
+
+  onSearchProducts(search) {
+    this.search = search;
   }
 }

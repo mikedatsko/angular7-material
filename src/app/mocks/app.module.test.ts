@@ -17,7 +17,8 @@ import {
   MatFormFieldModule,
   MatInputModule,
   MatCheckboxModule,
-  MatProgressSpinnerModule
+  MatProgressSpinnerModule,
+  MatTableModule
 } from '@angular/material';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { NgScrollbarModule } from 'ngx-scrollbar';
@@ -27,7 +28,7 @@ import { Category, PaginationPage, Product } from '../interfaces';
 
 @Component({selector: 'app-root', template: ``}) class AppComponent { }
 @Component({selector: 'app-carousel', template: ``}) class CarouselComponent { @Input() options: any; @Input() slides: any[] = []; }
-@Component({selector: 'app-cart', template: ``}) class CartComponent { @Input() selectedTiles: any[] = []; @Input() isShowCart: boolean = true; @Output() closeCartAction: EventEmitter<boolean> = new EventEmitter<boolean>(); }
+@Component({selector: 'app-cart', template: ``}) class CartComponent { @Input() selectedProducts: any[] = []; @Input() isShow: boolean = true; @Output() closeCartAction: EventEmitter<boolean> = new EventEmitter<boolean>(); }
 @Component({selector: 'app-categories', template: ``}) class CategoriesComponent { @Input() search: string = ''; @Output() getCategoriesAction: EventEmitter<any[]> = new EventEmitter<any[]>(); @Output() selectCategoryAction: EventEmitter<Category> = new EventEmitter<Category>(); @ViewChild('categoriesRef') categoriesRef: ElementRef; }
 @Component({selector: 'app-category', template: ``}) class CategoryComponent { @Input() category: any; @Input() selectedCategoryId: string = ''; @Input() categorySize: number = 0; }
 @Component({selector: 'app-checkout', template: ``}) class CheckoutComponent { }
@@ -40,7 +41,7 @@ import { Category, PaginationPage, Product } from '../interfaces';
 @Component({selector: 'app-pagination', template: ``}) class PaginationComponent { @Input() isShow: boolean = true; @Input() pages: PaginationPage[] = []; @Input() selectedPage: number = 0; @Output() changePageAction: EventEmitter<number> = new EventEmitter<number>(); }
 @Component({selector: 'app-preloader', template: ``}) class PreloaderComponent { }
 @Component({selector: 'app-product', template: ``}) class ProductComponent { @Input() product: Product; @Input() productSize: number; @Output() clickProductAction: EventEmitter<Product> = new EventEmitter<Product>(); }
-@Component({selector: 'app-products', template: ``}) class ProductsComponent { @Input() productsAll: Product[] = []; @Input() search: string = ''; @Output() selectProductAction: EventEmitter<Product[]> = new EventEmitter<Product[]>(); @ViewChild('productsRef') productsRef: ElementRef; }
+@Component({selector: 'app-products', template: ``}) class ProductsComponent { @Input() productsAll: Product[] = []; @Input() search: string = ''; @Input() isLoading: boolean = false; @Output() selectProductAction: EventEmitter<Product[]> = new EventEmitter<Product[]>(); @ViewChild('productsRef') productsRef: ElementRef; }
 @Component({selector: 'app-search-products', template: ``}) class SearchProductsComponent { @Input() isShowCart: boolean = false; @Input() selectedProductsNum: number = 0; @Output() searchAction: EventEmitter<string> = new EventEmitter<string>(); }
 
 const declarationList = [
@@ -81,6 +82,7 @@ export const AppModuleTest = (instanceName, instance) => ({
     MatInputModule,
     MatCheckboxModule,
     MatProgressSpinnerModule,
+    MatTableModule,
     CarouselModule,
     NgScrollbarModule,
     TranslateModule.forRoot({

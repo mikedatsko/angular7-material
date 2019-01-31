@@ -6,7 +6,7 @@
   class="category"
 >
   <div class="category-icon">
-    <mat-icon>{{category.icon}}</mat-icon>
+    <img [attr.src]="'assets/images/category/' + category.iconName + '.png'" alt="">
   </div>
-  <div class="category-title" [innerText]="category.title"></div>
+  <div class="category-title" [innerText]="category.categoryName"></div>
 </div>

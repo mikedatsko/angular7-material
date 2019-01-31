@@ -1,4 +1,4 @@
-<div #categoriesRef class="categories-list">
+<div #categoriesRef class="categories-list" (window:resize)="onWindowResize()">
   <app-preloader *ngIf="isLoading"></app-preloader>
 
   <app-category

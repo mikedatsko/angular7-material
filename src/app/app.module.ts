@@ -72,7 +72,7 @@ import { ApiService } from './services';
         useFactory: HttpLoaderFactory,
         deps: [HttpClient]
       }
-    })
+    }),
   ],
   declarations: [
     AppComponent,

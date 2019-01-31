@@ -28,10 +28,6 @@ export class FooterComponent implements OnInit {
       url: 'support'
     },
     {
-      title: 'EULA',
-      url: 'EULA'
-    },
-    {
       title: 'Impressum',
       url: 'impressum'
     }

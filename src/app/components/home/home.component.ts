@@ -51,7 +51,7 @@ export class HomeComponent implements OnInit {
   shoppingList: any[] = [
     {
       title: 'Recurring ordering',
-      icon: 'home'
+      icon: 'autorenew'
     },
     {
       title: 'Home delivery',
@@ -59,11 +59,11 @@ export class HomeComponent implements OnInit {
     },
     {
       title: 'Pick up from hiber mobile store',
-      icon: 'home'
+      icon: 'shopping_basket'
     },
     {
       title: 'Near trusted supermarkets',
-      icon: 'home'
+      icon: 'store'
     }
   ];
 

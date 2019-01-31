@@ -92,7 +92,7 @@
                     width: auto;
 
                     &:hover {
-                      color: #00CC6F;
+                      color: #25b9c6;
                       cursor: pointer;
                     }
                   }
@@ -104,7 +104,7 @@
                     text-decoration: underline;
 
                     &:hover {
-                      color: #00CC6F;
+                      color: #25b9c6;
                     }
                   }
                 }
@@ -113,7 +113,7 @@
               &.login {
                 border: 1px solid;
                 border-radius: 24px;
-                color: turquoise;
+                color: #25b9c6;
                 padding: 0px 24px;
                 font-size: 16px;
                 font-weight: 300;
@@ -122,9 +122,9 @@
                 margin-top: -1px;
 
                 &:hover {
-                  border-color: turquoise;
+                  border-color: #25b9c6;
                   background-color: transparent;
-                  color: turquoise;
+                  color: #25b9c6;
                 }
               }
             }
@@ -163,7 +163,7 @@
         height: auto !important;
         left: 0 !important;
         top: 64px !important;
-        background: #ff0476;
+        background: #25b9c6;
 
         /deep/ .mat-figure {
           position: relative;

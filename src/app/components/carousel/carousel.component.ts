@@ -16,7 +16,7 @@ export class CarouselComponent implements OnInit {
     dots: true,
     dotsData: true,
     nav: false,
-    navSpeed: 700,
+    navSpeed: 100,
     navText: ['', ''],
     responsive: {
       0: {

@@ -11,7 +11,7 @@
     }
 
     p {
-      margin-bottom: 46px;
+      margin-bottom: 25px;
       margin-top: 24px;
       font-size: 20px;
     }
@@ -20,14 +20,15 @@
       .mat-form-field-wrapper {
         font-size: 16px;
         padding: 9px 24px;
-        background-color: #f5f5f5;
-        color: #333;
+        background-color: #ffffff;
+        color: #25b9c6;
         border: 1px solid;
         border-color: #ccc;
         outline: none;
         text-align: left;
         transition: border-color 0.1s ease-in-out;
         margin: 8px 16px 8px 0;
+        border-radius: 5px;
 
         .mat-form-field-infix {
           border: 0;

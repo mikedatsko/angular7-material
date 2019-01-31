@@ -3,7 +3,7 @@
   <p>Save on an average of 400‎€ yearly on grocery shopping</p>
   <form #getStartedForm="ngForm" (ngSubmit)="getStarted(getStartedForm)">
     <mat-form-field>
-      <input matInput placeholder="Enter your zipcode" name="zipcode" ngModel>
+      <input matInput placeholder="Enter your zipcode" name="zipcode" ngModel autocomplete="off">
     </mat-form-field>
 
     <button mat-button class="submit-get-started">Get started</button>

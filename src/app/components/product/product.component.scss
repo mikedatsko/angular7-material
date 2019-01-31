@@ -22,13 +22,13 @@
 
     .product-checkbox {
       position: absolute;
-      top: 10px;
-      left: 10px;
+      top: 2px;
+      left: 2px;
     }
 
     .product-image {
-      max-width: calc(100% - 40px);
-      max-height: calc(100% - 40px);
+      max-width: calc(100% - 80px);
+      max-height: calc(100% - 80px);
       filter: invert(100%);
     }
 

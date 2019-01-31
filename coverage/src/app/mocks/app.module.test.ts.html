@@ -22,7 +22,7 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>84/84</span>
+        <span class='fraction'>85/85</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
@@ -150,7 +150,10 @@
 <a name='L102'></a><a href='#L102'>102</a>
 <a name='L103'></a><a href='#L103'>103</a>
 <a name='L104'></a><a href='#L104'>104</a>
-<a name='L105'></a><a href='#L105'>105</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L105'></a><a href='#L105'>105</a>
+<a name='L106'></a><a href='#L106'>106</a>
+<a name='L107'></a><a href='#L107'>107</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -193,7 +196,7 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -216,6 +219,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">18x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -273,7 +277,8 @@ import {
   MatFormFieldModule,
   MatInputModule,
   MatCheckboxModule,
-  MatProgressSpinnerModule
+  MatProgressSpinnerModule,
+  MatTableModule
 } from '@angular/material';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { NgScrollbarModule } from 'ngx-scrollbar';
@@ -283,7 +288,7 @@ import { Category, PaginationPage, Product } from '../interfaces';
 &nbsp;
 @Component({selector: 'app-root', template: ``}) class AppComponent { }
 @Component({selector: 'app-carousel', template: ``}) class CarouselComponent { @Input() options: any; @Input() slides: any[] = []; }
-@Component({selector: 'app-cart', template: ``}) class CartComponent { @Input() selectedTiles: any[] = []; @Input() isShowCart: boolean = true; @Output() closeCartAction: EventEmitter&lt;boolean&gt; = new EventEmitter&lt;boolean&gt;(); }
+@Component({selector: 'app-cart', template: ``}) class CartComponent { @Input() selectedProducts: any[] = []; @Input() isShow: boolean = true; @Output() closeCartAction: EventEmitter&lt;boolean&gt; = new EventEmitter&lt;boolean&gt;(); }
 @Component({selector: 'app-categories', template: ``}) class CategoriesComponent { @Input() search: string = ''; @Output() getCategoriesAction: EventEmitter&lt;any[]&gt; = new EventEmitter&lt;any[]&gt;(); @Output() selectCategoryAction: EventEmitter&lt;Category&gt; = new EventEmitter&lt;Category&gt;(); @ViewChild('categoriesRef') categoriesRef: ElementRef; }
 <span class="fstat-no" title="function not covered" >@Component({selector: 'app-category', template: ``}) class CategoryComponent { @Input() category: any; @Input() selectedCategoryId: string = ''; @Input() categorySize: number = 0; }</span>
 @Component({selector: 'app-checkout', template: ``}) class CheckoutComponent { }
@@ -296,7 +301,7 @@ import { Category, PaginationPage, Product } from '../interfaces';
 @Component({selector: 'app-pagination', template: ``}) class PaginationComponent { @Input() isShow: boolean = true; @Input() pages: PaginationPage[] = []; @Input() selectedPage: number = 0; @Output() changePageAction: EventEmitter&lt;number&gt; = new EventEmitter&lt;number&gt;(); }
 @Component({selector: 'app-preloader', template: ``}) class PreloaderComponent { }
 <span class="fstat-no" title="function not covered" >@Component({selector: 'app-product', template: ``}) class ProductComponent { @Input() product: Product; @Input() productSize: number; @Output() clickProductAction: EventEmitter&lt;Product&gt; = new EventEmitter&lt;Product&gt;(); }</span>
-@Component({selector: 'app-products', template: ``}) class ProductsComponent { @Input() productsAll: Product[] = []; @Input() search: string = ''; @Output() selectProductAction: EventEmitter&lt;Product[]&gt; = new EventEmitter&lt;Product[]&gt;(); @ViewChild('productsRef') productsRef: ElementRef; }
+@Component({selector: 'app-products', template: ``}) class ProductsComponent { @Input() productsAll: Product[] = []; @Input() search: string = ''; @Input() isLoading: boolean = false; @Output() selectProductAction: EventEmitter&lt;Product[]&gt; = new EventEmitter&lt;Product[]&gt;(); @ViewChild('productsRef') productsRef: ElementRef; }
 @Component({selector: 'app-search-products', template: ``}) class SearchProductsComponent { @Input() isShowCart: boolean = false; @Input() selectedProductsNum: number = 0; @Output() searchAction: EventEmitter&lt;string&gt; = new EventEmitter&lt;string&gt;(); }
 &nbsp;
 const declarationList = [
@@ -337,6 +342,7 @@ export const AppModuleTest = (instanceName, instance) =&gt; ({
     MatInputModule,
     MatCheckboxModule,
     MatProgressSpinnerModule,
+    MatTableModule,
     CarouselModule,
     NgScrollbarModule,
     TranslateModule.forRoot({
@@ -364,7 +370,7 @@ function HttpLoaderFactory(http: HttpClient) {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Wed Jan 30 2019 03:08:23 GMT+0200 (Eastern European Standard Time)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Thu Jan 31 2019 04:02:39 GMT+0200 (Eastern European Standard Time)
 </div>
 </div>
 <script src="../../../prettify.js"></script>

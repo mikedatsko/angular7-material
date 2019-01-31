@@ -1,7 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { Category, Product } from '../../interfaces';
+import { ApiService } from '../../services';
 
 @Component({
   selector: 'app-checkout',
@@ -14,24 +15,34 @@ export class CheckoutComponent implements OnInit, OnDestroy {
   products: any[] = [];
   selectedCategory: Category;
   selectedProducts: Product[] = [];
-  search: string = '';
+  searchCategories: string = '';
+  searchProducts: string = '';
   isShowCart: boolean = false;
+  isLoadingProducts = false;
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute, private api: ApiService, private router: Router) { }
 
   ngOnInit() {
     this.subs.push(this.route
       .paramMap
-      .pipe(map(params => params.get('email') || ''))
-      .subscribe(email => console.log('email', email)));
+      .pipe(map(params => params.get('zipcode') || ''))
+      .subscribe(zipcode => {
+        if (!zipcode) {
+          this.router.navigate(['/']);
+        }
+      }));
   }
 
   ngOnDestroy() {
     this.subs.forEach(sub => sub.unsubscribe());
   }
 
-  onSearch(search) {
-    this.search = search;
+  onSearchCategories(search) {
+    this.searchCategories = search;
+  }
+
+  onSearchProducts(search) {
+    this.searchProducts = search;
   }
 
   onCloseCart(isShowCart) {
@@ -44,10 +55,22 @@ export class CheckoutComponent implements OnInit, OnDestroy {
 
   onSelectCategory(category) {
     this.selectedCategory = category;
-    this.products = category.products;
+    this.getProducts();
   }
 
   onSelectProduct(products) {
     this.selectedProducts = products;
+  }
+
+  getProducts() {
+    this.isLoadingProducts = true;
+    this.subs.push(this.api.get(`category/${this.selectedCategory.id}/products`).subscribe((response: any) => {
+      this.products = response.map(product => ({
+        ...product,
+        categoryName: this.selectedCategory.categoryName,
+        price: 1
+      }));
+      this.isLoadingProducts = false;
+    }));
   }
 }

@@ -9,6 +9,7 @@ import { PaginationPage, Product } from '../../interfaces';
 export class ProductsComponent implements OnInit, OnChanges, AfterContentChecked {
   @Input() productsAll: Product[] = [];
   @Input() search: string = '';
+  @Input() isLoading: boolean = false;
   @Output() selectProductAction: EventEmitter<Product[]> = new EventEmitter<Product[]>();
   @ViewChild('productsRef') productsRef: ElementRef;
   productSize: number = 0;
@@ -46,7 +47,13 @@ export class ProductsComponent implements OnInit, OnChanges, AfterContentChecked
     }
 
     const { clientWidth } = this.productsRef.nativeElement;
-    this.productSize = clientWidth / this.productsColumns;
+    this.productsColumns = clientWidth < 480
+      ? 3
+      : clientWidth < 600
+        ? 4
+        : 6;
+    this.productsPerPage = this.productsColumns * 3;
+    this.productSize = Math.floor(clientWidth / this.productsColumns);
   }
 
   filterProducts() {
@@ -60,7 +67,7 @@ export class ProductsComponent implements OnInit, OnChanges, AfterContentChecked
       return;
     }
 
-    this.productsFiltered = this.productsAll.filter(product => product.title.toLowerCase().search(this.search) > -1);
+    this.productsFiltered = this.productsAll.filter(product => product.productName.toLowerCase().search(this.search) > -1);
     this.setProductsPages();
   }
 
@@ -86,13 +93,32 @@ export class ProductsComponent implements OnInit, OnChanges, AfterContentChecked
     this.setProducts();
   }
 
+  onWindowResize() {
+    this.checkProductSize();
+    this.filterProducts();
+  }
+
   toggleProduct(product) {
-    if (this.productsSelected.find(product_ => product_.id === product.id)) {
+    if (product.quantity) {
+      const productInSelected = this.productsSelected.find(product_ => product_.id === product.id);
+      product.isSelected = true;
+
+      if (!productInSelected) {
+        this.productsSelected.push(product);
+      }
+
+      this.productsSelected = this.productsSelected.map(product_ => {
+        if (product_.id === product.id) {
+          product_.quantity = product.quantity;
+        }
+
+        return product_;
+      });
+
+      product.isSelected = true;
+    } else {
       this.productsSelected = this.productsSelected.filter(product_ => product_.id !== product.id);
       product.isSelected = false;
-    } else {
-      this.productsSelected.push(product);
-      product.isSelected = true;
     }
 
     this.selectProductAction.emit(this.productsSelected);

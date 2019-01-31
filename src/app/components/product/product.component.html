@@ -4,8 +4,13 @@
   [style.height.px]="productSize - 2"
   class="product"
 >
-  <span class="product-title" [innerText]="product.title"></span>
-  <mat-checkbox class="product-checkbox" [checked]="product.isSelected"></mat-checkbox>
-  <span class="product-selector" (click)="clickProduct(product)"></span>
-  <img class="product-image" [attr.src]="product.imagePath" alt="">
+  <span class="product-title" [innerText]="product.productName"></span>
+  <mat-checkbox class="product-checkbox" [checked]="!!quantity"></mat-checkbox>
+  <div class="product-selector" (click)="addQuantity()"></div>
+  <div class="product-quantity">
+    <mat-icon class="noselect" (click)="addQuantity()">add</mat-icon>
+    <input matInput placeholder="0" type="text" name="search" [ngModel]="quantity" (input)="onChangeQuantity($event)">
+    <mat-icon class="noselect" (click)="removeQuantity()">remove</mat-icon>
+  </div>
+  <img class="product-image" [attr.src]="'assets/images/products/' + product.categoryName + '/' + product.iconName + '.png'" alt="">
 </div>

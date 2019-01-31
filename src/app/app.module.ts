@@ -18,7 +18,8 @@ import {
   MatFormFieldModule,
   MatInputModule,
   MatCheckboxModule,
-  MatProgressSpinnerModule
+  MatProgressSpinnerModule,
+  MatTableModule
 } from '@angular/material';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { NgScrollbarModule } from 'ngx-scrollbar';
@@ -64,6 +65,7 @@ import { ApiService } from './services';
     MatInputModule,
     MatCheckboxModule,
     MatProgressSpinnerModule,
+    MatTableModule,
     CarouselModule,
     NgScrollbarModule,
     TranslateModule.forRoot({

@@ -55,7 +55,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
 
   onSelectCategory(category) {
     this.selectedCategory = category;
-    this.getProducts();
+    // this.getProducts();
   }
 
   onSelectProduct(products) {
